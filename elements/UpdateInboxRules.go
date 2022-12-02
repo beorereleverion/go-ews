@@ -1,0 +1,12 @@
+package elements
+
+// The UpdateInboxRules element defines a request to update the Inbox rules in a mailbox in the server store.
+// https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/updateinboxrules
+type UpdateInboxRules struct {
+	// The MailboxSmtpAddress element represents the SMTP address of the user whose Inbox rules are to be retrieved or updated; or whose password expiration date is to be retrieved.
+	MailboxSmtpAddress *MailboxSmtpAddress `xml:"t:MailboxSmtpAddress"`
+	// The Operations element contains an array of rule operations that can be performed on an Inbox.
+	Operations *Operations `xml:"t:Operations"`
+	// The RemoveOutlookRuleBlob element indicates whether to remove the Microsoft Outlook rule blob.
+	RemoveOutlookRuleBlob *RemoveOutlookRuleBlob `xml:"t:RemoveOutlookRuleBlob"`
+}
