@@ -28,11 +28,11 @@ func main() {
 	gfe.Body = &operations.GetFolderBody{
 		GetFolder: operations.GetFolder{
 			FolderShape: &elements.FolderShape{
-				BaseShape: elements.BaseShapeAllProperties,
+				BaseShape: getPTR(elements.BaseShapeAllProperties),
 			},
 			FolderIds: &elements.FolderIds{
 				DistinguishedFolderId: &elements.DistinguishedFolderId{
-					ID: elements.DistinguishedFolderIdAttrIDcalendar,
+					Id: getPTR(elements.DistinguishedFolderIdcalendar),
 				},
 			},
 		},
@@ -57,4 +57,8 @@ func setOSEnvs() {
 	if password == "" {
 		log.Fatal("password can not be empty")
 	}
+}
+
+func getPTR[T comparable](t T) *T {
+	return &t
 }
