@@ -2,4 +2,4 @@ include .env
 export
 
 test:
-	go run examples/getCalendarFolder/main.go
+	go run examples/getCalendarItemProperty/main.go
