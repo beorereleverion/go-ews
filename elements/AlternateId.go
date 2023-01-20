@@ -2,7 +2,11 @@ package elements
 
 // The AlternateId element describes an identifier to convert in a request and the results of a converted identifier in the response.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/alternateid
+import "encoding/xml"
+
 type AlternateId struct {
+	XMLName xml.Name
+
 	// Describes the source format in a ConvertId operation request and describes the destination format in a ConvertId operation response. The destination format is described by the DestinationFormat attribute of the ConvertId element in the request. This attribute is of type IdFormatType.
 	Format *string `xml:"Format,attr"`
 	// Describes the source identifier in a ConvertId operation request and describes the destination identifier in a ConvertId operation response.
@@ -27,3 +31,11 @@ const (
 	// Describes an Outlook Web App identifier.
 	AlternateIdOwaId = `OwaId`
 )
+
+func (A *AlternateId) SetForMarshal() {
+	A.XMLName.Local = "m:AlternateId"
+}
+
+func (A *AlternateId) GetSchema() *Schema {
+	return &SchemaMessages
+}

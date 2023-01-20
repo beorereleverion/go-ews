@@ -2,11 +2,24 @@ package elements
 
 // The ActionType element specifies the action to take on the reminder.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/actiontype-reminderactiontype
-type ActionTypeReminderActionType string
+import "encoding/xml"
+
+type ActionTypeReminderActionType struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Dismiss
-	ActionTypeReminderActionTypeDismiss ActionTypeReminderActionType = `Dismiss`
+	ActionTypeReminderActionTypeDismiss string = `Dismiss`
 	// Snooze
-	ActionTypeReminderActionTypeSnooze ActionTypeReminderActionType = `Snooze`
+	ActionTypeReminderActionTypeSnooze string = `Snooze`
 )
+
+func (A *ActionTypeReminderActionType) SetForMarshal() {
+	A.XMLName.Local = "t:ActionType"
+}
+
+func (A *ActionTypeReminderActionType) GetSchema() *Schema {
+	return &SchemaTypes
+}

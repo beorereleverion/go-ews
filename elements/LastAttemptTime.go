@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/lastattempttime
 import "time"
 
-type LastAttemptTime time.Time
+import "encoding/xml"
+
+type LastAttemptTime struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (L *LastAttemptTime) SetForMarshal() {
+	L.XMLName.Local = "t:LastAttemptTime"
+}
+
+func (L *LastAttemptTime) GetSchema() *Schema {
+	return &SchemaTypes
+}

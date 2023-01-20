@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/todate
 import "time"
 
-type ToDate time.Time
+import "encoding/xml"
+
+type ToDate struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (T *ToDate) SetForMarshal() {
+	T.XMLName.Local = "t:ToDate"
+}
+
+func (T *ToDate) GetSchema() *Schema {
+	return &SchemaTypes
+}

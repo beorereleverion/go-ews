@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/currentmeetingtime
 import "time"
 
-type CurrentMeetingTime time.Time
+import "encoding/xml"
+
+type CurrentMeetingTime struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (C *CurrentMeetingTime) SetForMarshal() {
+	C.XMLName.Local = "t:CurrentMeetingTime"
+}
+
+func (C *CurrentMeetingTime) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -2,19 +2,32 @@ package elements
 
 // The IsAssignmentEditable element represents the task type.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/isassignmenteditable
-type IsAssignmentEditable int64
+import "encoding/xml"
+
+type IsAssignmentEditable struct {
+	XMLName xml.Name
+	TEXT    int64 `xml:",chardata"`
+}
 
 const (
 	// The default for all task items.
-	IsAssignmentEditableZero IsAssignmentEditable = 0
+	IsAssignmentEditableZero int64 = 0
 	// A task request.
-	IsAssignmentEditableOne IsAssignmentEditable = 1
+	IsAssignmentEditableOne int64 = 1
 	// A task acceptance from a recipient of a task request.
-	IsAssignmentEditableTwo IsAssignmentEditable = 2
+	IsAssignmentEditableTwo int64 = 2
 	// A task declination from a recipient of a task request.
-	IsAssignmentEditableTree IsAssignmentEditable = 3
+	IsAssignmentEditableTree int64 = 3
 	// An update to a previous task request.
-	IsAssignmentEditableFour IsAssignmentEditable = 4
+	IsAssignmentEditableFour int64 = 4
 	// Not used.
-	IsAssignmentEditable5 IsAssignmentEditable = 5
+	IsAssignmentEditable5 int64 = 5
 )
+
+func (I *IsAssignmentEditable) SetForMarshal() {
+	I.XMLName.Local = "t:IsAssignmentEditable"
+}
+
+func (I *IsAssignmentEditable) GetSchema() *Schema {
+	return &SchemaTypes
+}

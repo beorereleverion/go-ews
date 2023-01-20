@@ -2,23 +2,36 @@ package elements
 
 // The PhoneCallState element specifies the current state for a phone call.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/phonecallstate
-type PhoneCallState string
+import "encoding/xml"
+
+type PhoneCallState struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Alerted
-	PhoneCallStateAlerted PhoneCallState = `Alerted`
+	PhoneCallStateAlerted string = `Alerted`
 	// Connected
-	PhoneCallStateConnected PhoneCallState = `Connected`
+	PhoneCallStateConnected string = `Connected`
 	// Connecting
-	PhoneCallStateConnecting PhoneCallState = `Connecting`
+	PhoneCallStateConnecting string = `Connecting`
 	// Disconnected
-	PhoneCallStateDisconnected PhoneCallState = `Disconnected`
+	PhoneCallStateDisconnected string = `Disconnected`
 	// Forwarding
-	PhoneCallStateForwarding PhoneCallState = `Forwarding`
+	PhoneCallStateForwarding string = `Forwarding`
 	// Idle
-	PhoneCallStateIdle PhoneCallState = `Idle`
+	PhoneCallStateIdle string = `Idle`
 	// Incoming
-	PhoneCallStateIncoming PhoneCallState = `Incoming`
+	PhoneCallStateIncoming string = `Incoming`
 	// Transferring
-	PhoneCallStateTransferring PhoneCallState = `Transferring`
+	PhoneCallStateTransferring string = `Transferring`
 )
+
+func (P *PhoneCallState) SetForMarshal() {
+	P.XMLName.Local = "t:PhoneCallState"
+}
+
+func (P *PhoneCallState) GetSchema() *Schema {
+	return &SchemaTypes
+}

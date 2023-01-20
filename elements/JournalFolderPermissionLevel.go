@@ -2,17 +2,30 @@ package elements
 
 // The JournalFolderPermissionLevel element contains the permissions for the default Journal folder. This element was introduced in Microsoft Exchange Server 2007 Service Pack 1 (SP1).
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/journalfolderpermissionlevel
-type JournalFolderPermissionLevel string
+import "encoding/xml"
+
+type JournalFolderPermissionLevel struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// The delegate user can read and create items in the Journal folder.
-	JournalFolderPermissionLevelAuthor JournalFolderPermissionLevel = `Author`
+	JournalFolderPermissionLevelAuthor string = `Author`
 	// The delegate user has custom access permissions to the Journal folder.
-	JournalFolderPermissionLevelCustom JournalFolderPermissionLevel = `Custom`
+	JournalFolderPermissionLevelCustom string = `Custom`
 	// The delegate user can read, create, and modify items in the Journal folder.
-	JournalFolderPermissionLevelEditor JournalFolderPermissionLevel = `Editor`
+	JournalFolderPermissionLevelEditor string = `Editor`
 	// The delegate user has no access permissions to the Journal folder.
-	JournalFolderPermissionLevelNone JournalFolderPermissionLevel = `None`
+	JournalFolderPermissionLevelNone string = `None`
 	// The delegate user can read items in the Journal folder.
-	JournalFolderPermissionLevelReviewer JournalFolderPermissionLevel = `Reviewer`
+	JournalFolderPermissionLevelReviewer string = `Reviewer`
 )
+
+func (J *JournalFolderPermissionLevel) SetForMarshal() {
+	J.XMLName.Local = "t:JournalFolderPermissionLevel"
+}
+
+func (J *JournalFolderPermissionLevel) GetSchema() *Schema {
+	return &SchemaTypes
+}

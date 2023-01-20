@@ -2,11 +2,24 @@ package elements
 
 // The OutlookRuleBlobExists element indicates whether a Microsoft Outlook rule blob exists in the user's mailbox.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/outlookruleblobexists
-type OutlookRuleBlobExists bool
+import "encoding/xml"
+
+type OutlookRuleBlobExists struct {
+	XMLName xml.Name
+	TEXT    bool `xml:",chardata"`
+}
 
 const (
 	// false
-	OutlookRuleBlobExistsfalse OutlookRuleBlobExists = false
+	OutlookRuleBlobExistsfalse bool = false
 	// true
-	OutlookRuleBlobExiststrue OutlookRuleBlobExists = true
+	OutlookRuleBlobExiststrue bool = true
 )
+
+func (O *OutlookRuleBlobExists) SetForMarshal() {
+	O.XMLName.Local = "m:OutlookRuleBlobExists"
+}
+
+func (O *OutlookRuleBlobExists) GetSchema() *Schema {
+	return &SchemaMessages
+}

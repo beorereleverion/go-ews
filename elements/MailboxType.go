@@ -2,23 +2,36 @@ package elements
 
 // The MailboxType element represents the type of mailbox that is represented by the e-mail address.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/mailboxtype
-type MailboxType string
+import "encoding/xml"
+
+type MailboxType struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Represents a contact in a user's mailbox.
-	MailboxTypeContact MailboxType = `Contact`
+	MailboxTypeContact string = `Contact`
 	// Represents a group mailbox.
-	MailboxTypeGroupMailbox MailboxType = `GroupMailbox`
+	MailboxTypeGroupMailbox string = `GroupMailbox`
 	// Represents a mail-enabled Active Directory object.
-	MailboxTypeMailbox MailboxType = `Mailbox`
+	MailboxTypeMailbox string = `Mailbox`
 	// Represents a one-off member of a personal distribution list.
-	MailboxTypeOneOff MailboxType = `OneOff`
+	MailboxTypeOneOff string = `OneOff`
 	// Represents a private distribution list in a user's mailbox.
-	MailboxTypePrivateDL MailboxType = `PrivateDL`
+	MailboxTypePrivateDL string = `PrivateDL`
 	// Represents a public distribution list.
-	MailboxTypePublicDL MailboxType = `PublicDL`
+	MailboxTypePublicDL string = `PublicDL`
 	// Represents a public folder.
-	MailboxTypePublicFolder MailboxType = `PublicFolder`
+	MailboxTypePublicFolder string = `PublicFolder`
 	// Represents an unknown type of mailbox.
-	MailboxTypeUnknown MailboxType = `Unknown`
+	MailboxTypeUnknown string = `Unknown`
 )
+
+func (M *MailboxType) SetForMarshal() {
+	M.XMLName.Local = "t:MailboxType"
+}
+
+func (M *MailboxType) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/start
 import "time"
 
-type Start time.Time
+import "encoding/xml"
+
+type Start struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (S *Start) SetForMarshal() {
+	S.XMLName.Local = "t:Start"
+}
+
+func (S *Start) GetSchema() *Schema {
+	return &SchemaTypes
+}

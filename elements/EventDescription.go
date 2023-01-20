@@ -2,59 +2,72 @@ package elements
 
 // The EventDescription element
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/eventdescription
-type EventDescription string
+import "encoding/xml"
+
+type EventDescription struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	//
-	EventDescriptionApprovedModeration EventDescription = `ApprovedModeration`
+	EventDescriptionApprovedModeration string = `ApprovedModeration`
 	//
-	EventDescriptionDelayedAfterTransferToPartnerOrg EventDescription = `DelayedAfterTransferToPartnerOrg`
+	EventDescriptionDelayedAfterTransferToPartnerOrg string = `DelayedAfterTransferToPartnerOrg`
 	//
-	EventDescriptionDelivered EventDescription = `Delivered`
+	EventDescriptionDelivered string = `Delivered`
 	//
-	EventDescriptionExpanded EventDescription = `Expanded`
+	EventDescriptionExpanded string = `Expanded`
 	//
-	EventDescriptionFailedGeneral EventDescription = `FailedGeneral`
+	EventDescriptionFailedGeneral string = `FailedGeneral`
 	//
-	EventDescriptionFailedModeration EventDescription = `FailedModeration`
+	EventDescriptionFailedModeration string = `FailedModeration`
 	//
-	EventDescriptionFailedTransportRules EventDescription = `FailedTransportRules`
+	EventDescriptionFailedTransportRules string = `FailedTransportRules`
 	//
-	EventDescriptionForwarded EventDescription = `Forwarded`
+	EventDescriptionForwarded string = `Forwarded`
 	//
-	EventDescriptionMessageDefer EventDescription = `MessageDefer`
+	EventDescriptionMessageDefer string = `MessageDefer`
 	//
-	EventDescriptionMovedToFolderByInboxRule EventDescription = `MovedToFolderByInboxRule`
+	EventDescriptionMovedToFolderByInboxRule string = `MovedToFolderByInboxRule`
 	//
-	EventDescriptionNotRead EventDescription = `NotRead`
+	EventDescriptionNotRead string = `NotRead`
 	//
-	EventDescriptionPending EventDescription = `Pending`
+	EventDescriptionPending string = `Pending`
 	//
-	EventDescriptionPendingModeration EventDescription = `PendingModeration`
+	EventDescriptionPendingModeration string = `PendingModeration`
 	//
-	EventDescriptionQueueRetry EventDescription = `QueueRetry`
+	EventDescriptionQueueRetry string = `QueueRetry`
 	//
-	EventDescriptionQueueRetryNoRetryTime EventDescription = `QueueRetryNoRetryTime`
+	EventDescriptionQueueRetryNoRetryTime string = `QueueRetryNoRetryTime`
 	//
-	EventDescriptionRead EventDescription = `Read`
+	EventDescriptionRead string = `Read`
 	//
-	EventDescriptionResolved EventDescription = `Resolved`
+	EventDescriptionResolved string = `Resolved`
 	//
-	EventDescriptionRulesCc EventDescription = `RulesCc`
+	EventDescriptionRulesCc string = `RulesCc`
 	//
-	EventDescriptionSmtpReceive EventDescription = `SmtpReceive`
+	EventDescriptionSmtpReceive string = `SmtpReceive`
 	//
-	EventDescriptionSmtpSend EventDescription = `SmtpSend`
+	EventDescriptionSmtpSend string = `SmtpSend`
 	//
-	EventDescriptionSmtpSendCrossForest EventDescription = `SmtpSendCrossForest`
+	EventDescriptionSmtpSendCrossForest string = `SmtpSendCrossForest`
 	//
-	EventDescriptionSmtpSendCrossSite EventDescription = `SmtpSendCrossSite`
+	EventDescriptionSmtpSendCrossSite string = `SmtpSendCrossSite`
 	//
-	EventDescriptionSubmitted EventDescription = `Submitted`
+	EventDescriptionSubmitted string = `Submitted`
 	//
-	EventDescriptionTransferredToForeignOrg EventDescription = `TransferredToForeignOrg`
+	EventDescriptionTransferredToForeignOrg string = `TransferredToForeignOrg`
 	//
-	EventDescriptionTransferredToLegacyExchangeServer EventDescription = `TransferredToLegacyExchangeServer`
+	EventDescriptionTransferredToLegacyExchangeServer string = `TransferredToLegacyExchangeServer`
 	//
-	EventDescriptionTransferredToPartnerOrg EventDescription = `TransferredToPartnerOrg`
+	EventDescriptionTransferredToPartnerOrg string = `TransferredToPartnerOrg`
 )
+
+func (E *EventDescription) SetForMarshal() {
+	E.XMLName.Local = "t:EventDescription"
+}
+
+func (E *EventDescription) GetSchema() *Schema {
+	return &SchemaTypes
+}

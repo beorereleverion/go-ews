@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/end-changehighlightstype
 import "time"
 
-type EndChangeHighlightsType time.Time
+import "encoding/xml"
+
+type EndChangeHighlightsType struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (E *EndChangeHighlightsType) SetForMarshal() {
+	E.XMLName.Local = "t:End"
+}
+
+func (E *EndChangeHighlightsType) GetSchema() *Schema {
+	return &SchemaTypes
+}

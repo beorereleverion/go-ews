@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/recurrenceid
 import "time"
 
-type RecurrenceId time.Time
+import "encoding/xml"
+
+type RecurrenceId struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (R *RecurrenceId) SetForMarshal() {
+	R.XMLName.Local = "t:RecurrenceId"
+}
+
+func (R *RecurrenceId) GetSchema() *Schema {
+	return &SchemaTypes
+}

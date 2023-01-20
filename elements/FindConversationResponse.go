@@ -2,17 +2,21 @@ package elements
 
 // The FindConversationResponse element defines a response to a FindConversation operation request.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/findconversationresponse
+import "encoding/xml"
+
 type FindConversationResponse struct {
+	XMLName xml.Name
+
 	// The Conversations element contains an array of conversations that are returned in the FindConversation response.
-	Conversations *Conversations `xml:"m:Conversations"`
+	Conversations *Conversations `xml:"Conversations"`
 	// The DescriptiveLinkKey element is currently unused and is reserved for future use. It contains a value of 0.
-	DescriptiveLinkKey *DescriptiveLinkKey `xml:"m:DescriptiveLinkKey"`
+	DescriptiveLinkKey *DescriptiveLinkKey `xml:"DescriptiveLinkKey"`
 	// The MessageText element provides a text description of the status of the response.
-	MessageText *MessageText `xml:"m:MessageText"`
+	MessageText *MessageText `xml:"MessageText"`
 	// The MessageXml element provides additional error response information.
-	MessageXml *MessageXml `xml:"m:MessageXml"`
+	MessageXml *MessageXml `xml:"MessageXml"`
 	// The ResponseCode element provides status information about the request.
-	ResponseCode *ResponseCode `xml:"m:ResponseCode"`
+	ResponseCode *ResponseCode `xml:"ResponseCode"`
 	// Describes the status of a FindConversation operation response. The following values are valid for this attribute:  - Success  - Warning  - Error
 	ResponseClass *string `xml:"ResponseClass,attr"`
 }
@@ -25,3 +29,11 @@ const (
 	// Describes a request that cannot be fulfilled. The following are examples of sources of errors:  - Invalid attributes or elements  - Attributes or elements that are out of range  - An unknown tag  - An attribute or element that is not valid in the context  - An unauthorized access attempt by any client  - A server-side failure in response to a valid client-side call    Information about the error can be found in the ResponseCode and MessageText elements.
 	FindConversationResponseError = `Error`
 )
+
+func (F *FindConversationResponse) SetForMarshal() {
+	F.XMLName.Local = "m:FindConversationResponse"
+}
+
+func (F *FindConversationResponse) GetSchema() *Schema {
+	return &SchemaMessages
+}

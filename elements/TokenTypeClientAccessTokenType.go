@@ -2,13 +2,26 @@ package elements
 
 // The TokenType element identifies the type of client access token that will be returned in the GetClientAccessToken response.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/tokentype-clientaccesstokentype
-type TokenTypeClientAccessTokenType string
+import "encoding/xml"
+
+type TokenTypeClientAccessTokenType struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// CallerIdentity
-	TokenTypeClientAccessTokenTypeCallerIdentity TokenTypeClientAccessTokenType = `CallerIdentity`
+	TokenTypeClientAccessTokenTypeCallerIdentity string = `CallerIdentity`
 	// ExtensionCallback
-	TokenTypeClientAccessTokenTypeExtensionCallback TokenTypeClientAccessTokenType = `ExtensionCallback`
+	TokenTypeClientAccessTokenTypeExtensionCallback string = `ExtensionCallback`
 	// ScopedToken
-	TokenTypeClientAccessTokenTypeScopedToken TokenTypeClientAccessTokenType = `ScopedToken`
+	TokenTypeClientAccessTokenTypeScopedToken string = `ScopedToken`
 )
+
+func (T *TokenTypeClientAccessTokenType) SetForMarshal() {
+	T.XMLName.Local = "t:TokenType"
+}
+
+func (T *TokenTypeClientAccessTokenType) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/startwallclock
 import "time"
 
-type StartWallClock time.Time
+import "encoding/xml"
+
+type StartWallClock struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (S *StartWallClock) SetForMarshal() {
+	S.XMLName.Local = "t:StartWallClock"
+}
+
+func (S *StartWallClock) GetSchema() *Schema {
+	return &SchemaTypes
+}

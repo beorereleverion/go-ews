@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/enddatetime
 import "time"
 
-type EndDateTime time.Time
+import "encoding/xml"
+
+type EndDateTime struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (E *EndDateTime) SetForMarshal() {
+	E.XMLName.Local = "m:EndDateTime"
+}
+
+func (E *EndDateTime) GetSchema() *Schema {
+	return &SchemaMessages
+}

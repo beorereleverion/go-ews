@@ -2,4 +2,9 @@ package elements
 
 // The GroupType (FederatedDirectoryGroupType) element is intended for internal use only.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/grouptype-federateddirectorygrouptype
-type GroupTypeFederatedDirectoryGroupType interface{}
+import "encoding/xml"
+
+type GroupTypeFederatedDirectoryGroupType struct {
+	XMLName xml.Name
+	TEXT    interface{} `xml:",chardata"`
+}

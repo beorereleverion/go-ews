@@ -2,21 +2,25 @@ package elements
 
 // The ServiceConfigurationResponseMessageType element contains service configuration settings.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/serviceconfigurationresponsemessagetype
+import "encoding/xml"
+
 type ServiceConfigurationResponseMessageType struct {
+	XMLName xml.Name
+
 	// The DescriptiveLinkKey element is currently unused and is reserved for future use. It contains a value of 0.
-	DescriptiveLinkKey *DescriptiveLinkKey `xml:"m:DescriptiveLinkKey"`
+	DescriptiveLinkKey *DescriptiveLinkKey `xml:"DescriptiveLinkKey"`
 	// The MailTipsConfiguration element contains service configuration information for the mail tips service.
-	MailTipsConfiguration *MailTipsConfigurationMailTipsServiceConfiguration `xml:"m:MailTipsConfiguration"`
+	MailTipsConfiguration *MailTipsConfigurationMailTipsServiceConfiguration `xml:"MailTipsConfiguration"`
 	// The MessageText element provides a text description of the status of the response.
-	MessageText *MessageText `xml:"m:MessageText"`
+	MessageText *MessageText `xml:"MessageText"`
 	// The MessageXml element provides additional error response information.
-	MessageXml *MessageXml `xml:"m:MessageXml"`
+	MessageXml *MessageXml `xml:"MessageXml"`
 	// The ProtectionRulesConfiguration element contains service configuration information for the protection rules service.
-	ProtectionRulesConfiguration *ProtectionRulesConfiguration `xml:"m:ProtectionRulesConfiguration"`
+	ProtectionRulesConfiguration *ProtectionRulesConfiguration `xml:"ProtectionRulesConfiguration"`
 	// The ResponseCode element provides status information about the request.
-	ResponseCode *ResponseCode `xml:"m:ResponseCode"`
+	ResponseCode *ResponseCode `xml:"ResponseCode"`
 	// The UnifiedMessagingConfiguration element contains service configuration information for the Unified Messaging service.
-	UnifiedMessagingConfiguration *UnifiedMessagingConfiguration `xml:"m:UnifiedMessagingConfiguration"`
+	UnifiedMessagingConfiguration *UnifiedMessagingConfiguration `xml:"UnifiedMessagingConfiguration"`
 	// Describes the status of the response. The following values are valid for this attribute:  - Success  - Warning  - Error
 	ResponseClass *string `xml:"ResponseClass,attr"`
 }
@@ -29,3 +33,11 @@ const (
 	// Describes a request that cannot be fulfilled. The following are examples of sources of errors:  - Invalid attributes or elements  - Attributes or elements that are out of range  - An unknown tag  - An attribute or element is not valid in the context  - An unauthorized access attempt by any client  - A server-side failure in response to a valid client-side call    Information about the error can be found in the ResponseCode and MessageText elements.
 	ServiceConfigurationResponseMessageTypeError = `Error`
 )
+
+func (S *ServiceConfigurationResponseMessageType) SetForMarshal() {
+	S.XMLName.Local = "m:ServiceConfigurationResponseMessageType"
+}
+
+func (S *ServiceConfigurationResponseMessageType) GetSchema() *Schema {
+	return &SchemaMessages
+}

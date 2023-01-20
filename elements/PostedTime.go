@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/postedtime
 import "time"
 
-type PostedTime time.Time
+import "encoding/xml"
+
+type PostedTime struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (P *PostedTime) SetForMarshal() {
+	P.XMLName.Local = "t:PostedTime"
+}
+
+func (P *PostedTime) GetSchema() *Schema {
+	return &SchemaTypes
+}

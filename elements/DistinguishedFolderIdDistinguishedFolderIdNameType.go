@@ -2,83 +2,96 @@ package elements
 
 // The DistinguishedFolderId element identifies folders that can be referenced by name.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/distinguishedfolderid-distinguishedfolderidnametype
-type DistinguishedFolderIdDistinguishedFolderIdNameType string
+import "encoding/xml"
+
+type DistinguishedFolderIdDistinguishedFolderIdNameType struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Indicates the URL of the administrative audit log folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypeadminauditlogs DistinguishedFolderIdDistinguishedFolderIdNameType = `adminauditlogs`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypeadminauditlogs string = `adminauditlogs`
 	// Indicates the URL of the archived deleted items folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypearchivedeleteditems DistinguishedFolderIdDistinguishedFolderIdNameType = `archivedeleteditems`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypearchivedeleteditems string = `archivedeleteditems`
 	// Indicates the URL of the archived message folder root folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypearchivemsgfolderroot DistinguishedFolderIdDistinguishedFolderIdNameType = `archivemsgfolderroot`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypearchivemsgfolderroot string = `archivemsgfolderroot`
 	// Indicates the URL of the archived recoverable deleted items folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiverecoverableitemsdeletions DistinguishedFolderIdDistinguishedFolderIdNameType = `archiverecoverableitemsdeletions`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiverecoverableitemsdeletions string = `archiverecoverableitemsdeletions`
 	// Indicates the URL of the archived purged recoverable items folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiverecoverableitemspurges DistinguishedFolderIdDistinguishedFolderIdNameType = `archiverecoverableitemspurges`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiverecoverableitemspurges string = `archiverecoverableitemspurges`
 	// Indicates the URL of the archived recoverable items root folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiverecoverableitemsroot DistinguishedFolderIdDistinguishedFolderIdNameType = `archiverecoverableitemsroot`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiverecoverableitemsroot string = `archiverecoverableitemsroot`
 	// Indicates the URL of the archived recoverable items versions folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiverecoverableitemsversions DistinguishedFolderIdDistinguishedFolderIdNameType = `archiverecoverableitemsversions`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiverecoverableitemsversions string = `archiverecoverableitemsversions`
 	// Indicates the URL of the archive root folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiveroot DistinguishedFolderIdDistinguishedFolderIdNameType = `archiveroot`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypearchiveroot string = `archiveroot`
 	// Indicates the URL of the calendar folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypecalendar DistinguishedFolderIdDistinguishedFolderIdNameType = `calendar`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypecalendar string = `calendar`
 	// Indicates the URL of the conflicts folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypeconflicts DistinguishedFolderIdDistinguishedFolderIdNameType = `conflicts`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypeconflicts string = `conflicts`
 	// Indicates the URL of the contacts folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypecontacts DistinguishedFolderIdDistinguishedFolderIdNameType = `contacts`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypecontacts string = `contacts`
 	// Indicates the URL of the conversation history folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypeconversationhistory DistinguishedFolderIdDistinguishedFolderIdNameType = `conversationhistory`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypeconversationhistory string = `conversationhistory`
 	// Indicates the URL of the deleted items folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypedeleteditems DistinguishedFolderIdDistinguishedFolderIdNameType = `deleteditems`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypedeleteditems string = `deleteditems`
 	// Indicates a URL of the directory folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypedirectory DistinguishedFolderIdDistinguishedFolderIdNameType = `directory`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypedirectory string = `directory`
 	// Indicates the URL of the drafts folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypedrafts DistinguishedFolderIdDistinguishedFolderIdNameType = `drafts`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypedrafts string = `drafts`
 	// Indicates the URL of the inbox folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypeinbox DistinguishedFolderIdDistinguishedFolderIdNameType = `inbox`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypeinbox string = `inbox`
 	// Indicates the URL of the journal folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypejournal DistinguishedFolderIdDistinguishedFolderIdNameType = `journal`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypejournal string = `journal`
 	// Indicates the URL of the junk email folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypejunkemail DistinguishedFolderIdDistinguishedFolderIdNameType = `junkemail`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypejunkemail string = `junkemail`
 	// Indicates the URL of the local failures folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypelocalfailures DistinguishedFolderIdDistinguishedFolderIdNameType = `localfailures`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypelocalfailures string = `localfailures`
 	// Indicates the URL of the message root folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypemsgfolderroot DistinguishedFolderIdDistinguishedFolderIdNameType = `msgfolderroot`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypemsgfolderroot string = `msgfolderroot`
 	// Indicates the URL of the my contacts folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypemycontacts DistinguishedFolderIdDistinguishedFolderIdNameType = `mycontacts`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypemycontacts string = `mycontacts`
 	// Indicates the URL of the notes folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypenotes DistinguishedFolderIdDistinguishedFolderIdNameType = `notes`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypenotes string = `notes`
 	// Indicates the URL of the outbox folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypeoutbox DistinguishedFolderIdDistinguishedFolderIdNameType = `outbox`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypeoutbox string = `outbox`
 	// Indicates the URL of the public folders root folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypepublicfoldersroot DistinguishedFolderIdDistinguishedFolderIdNameType = `publicfoldersroot`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypepublicfoldersroot string = `publicfoldersroot`
 	// Indicates the URL of the quick contacts folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypequickcontacts DistinguishedFolderIdDistinguishedFolderIdNameType = `quickcontacts`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypequickcontacts string = `quickcontacts`
 	// Indicates the URL of the recipient cache folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTyperecipientcache DistinguishedFolderIdDistinguishedFolderIdNameType = `recipientcache`
+	DistinguishedFolderIdDistinguishedFolderIdNameTyperecipientcache string = `recipientcache`
 	// Indicates the URL of the deleted recoverable items folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTyperecoverableitemsdeletions DistinguishedFolderIdDistinguishedFolderIdNameType = `recoverableitemsdeletions`
+	DistinguishedFolderIdDistinguishedFolderIdNameTyperecoverableitemsdeletions string = `recoverableitemsdeletions`
 	// Indicates the URL of the purged recoverable items folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTyperecoverableitemspurges DistinguishedFolderIdDistinguishedFolderIdNameType = `recoverableitemspurges`
+	DistinguishedFolderIdDistinguishedFolderIdNameTyperecoverableitemspurges string = `recoverableitemspurges`
 	// Indicates the URL of the recoverable items root folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTyperecoverableitemsroot DistinguishedFolderIdDistinguishedFolderIdNameType = `recoverableitemsroot`
+	DistinguishedFolderIdDistinguishedFolderIdNameTyperecoverableitemsroot string = `recoverableitemsroot`
 	// Indicates the URL of the recoverable item versions folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTyperecoverableitemsversions DistinguishedFolderIdDistinguishedFolderIdNameType = `recoverableitemsversions`
+	DistinguishedFolderIdDistinguishedFolderIdNameTyperecoverableitemsversions string = `recoverableitemsversions`
 	// Indicates the URL of the root folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTyperoot DistinguishedFolderIdDistinguishedFolderIdNameType = `root`
+	DistinguishedFolderIdDistinguishedFolderIdNameTyperoot string = `root`
 	// Indicates the URL of the search folders.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypesearchfolders DistinguishedFolderIdDistinguishedFolderIdNameType = `searchfolders`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypesearchfolders string = `searchfolders`
 	// Indicates the URL of the sent items folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypesentitems DistinguishedFolderIdDistinguishedFolderIdNameType = `sentitems`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypesentitems string = `sentitems`
 	// Indicates the URL of the server failures folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypeserverfailures DistinguishedFolderIdDistinguishedFolderIdNameType = `serverfailures`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypeserverfailures string = `serverfailures`
 	// Indicates the URL of the synchronization issues folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypesyncissues DistinguishedFolderIdDistinguishedFolderIdNameType = `syncissues`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypesyncissues string = `syncissues`
 	// Indicates the URL of the tasks folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypetasks DistinguishedFolderIdDistinguishedFolderIdNameType = `tasks`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypetasks string = `tasks`
 	// Indicates the URL of the search to-do folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypetodosearch DistinguishedFolderIdDistinguishedFolderIdNameType = `todosearch`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypetodosearch string = `todosearch`
 	// Indicates the URL of the voice-mail folder.
-	DistinguishedFolderIdDistinguishedFolderIdNameTypevoicemail DistinguishedFolderIdDistinguishedFolderIdNameType = `voicemail`
+	DistinguishedFolderIdDistinguishedFolderIdNameTypevoicemail string = `voicemail`
 )
+
+func (D *DistinguishedFolderIdDistinguishedFolderIdNameType) SetForMarshal() {
+	D.XMLName.Local = "t:DistinguishedFolderId"
+}
+
+func (D *DistinguishedFolderIdDistinguishedFolderIdNameType) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -2,27 +2,40 @@ package elements
 
 // The MailTipsRequested element contains the types of mail tips requested from the service.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/mailtipsrequested
-type MailTipsRequested string
+import "encoding/xml"
+
+type MailTipsRequested struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Represents all available mail tips.
-	MailTipsRequestedAll MailTipsRequested = `All`
+	MailTipsRequestedAll string = `All`
 	// Represents a custom mail tip.
-	MailTipsRequestedCustomMailTip MailTipsRequested = `CustomMailTip`
+	MailTipsRequestedCustomMailTip string = `CustomMailTip`
 	// Indicates whether delivery restrictions will prevent the sender's message from reaching the recipient.
-	MailTipsRequestedDeliveryRestriction MailTipsRequested = `DeliveryRestriction`
+	MailTipsRequestedDeliveryRestriction string = `DeliveryRestriction`
 	// Represents the count of external members.
-	MailTipsRequestedExternalMemberCount MailTipsRequested = `ExternalMemberCount`
+	MailTipsRequestedExternalMemberCount string = `ExternalMemberCount`
 	// Indicates whether the recipient is invalid.
-	MailTipsRequestedInvalidRecipient MailTipsRequested = `InvalidRecipient`
+	MailTipsRequestedInvalidRecipient string = `InvalidRecipient`
 	// Represents the status for a mailbox that is full.
-	MailTipsRequestedMailboxFullStatus MailTipsRequested = `MailboxFullStatus`
+	MailTipsRequestedMailboxFullStatus string = `MailboxFullStatus`
 	// Represents the maximum message size a recipient can accept.
-	MailTipsRequestedMaxMessageSize MailTipsRequested = `MaxMessageSize`
+	MailTipsRequestedMaxMessageSize string = `MaxMessageSize`
 	// Indicates whether the sender's message will be reviewed by a moderator.
-	MailTipsRequestedModerationStatus MailTipsRequested = `ModerationStatus`
+	MailTipsRequestedModerationStatus string = `ModerationStatus`
 	// Represents the Out of Office (OOF) message.
-	MailTipsRequestedOutOfOfficeMessage MailTipsRequested = `OutOfOfficeMessage`
+	MailTipsRequestedOutOfOfficeMessage string = `OutOfOfficeMessage`
 	// Represents the count of all members.
-	MailTipsRequestedTotalMemberCount MailTipsRequested = `TotalMemberCount`
+	MailTipsRequestedTotalMemberCount string = `TotalMemberCount`
 )
+
+func (M *MailTipsRequested) SetForMarshal() {
+	M.XMLName.Local = "m:MailTipsRequested"
+}
+
+func (M *MailTipsRequested) GetSchema() *Schema {
+	return &SchemaMessages
+}

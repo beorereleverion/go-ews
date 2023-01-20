@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/weddinganniversary
 import "time"
 
-type WeddingAnniversary time.Time
+import "encoding/xml"
+
+type WeddingAnniversary struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (W *WeddingAnniversary) SetForMarshal() {
+	W.XMLName.Local = "t:WeddingAnniversary"
+}
+
+func (W *WeddingAnniversary) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -2,11 +2,24 @@ package elements
 
 // The IsOwner element specifies whether the specified email user is the owner.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/isowner
-type IsOwner bool
+import "encoding/xml"
+
+type IsOwner struct {
+	XMLName xml.Name
+	TEXT    bool `xml:",chardata"`
+}
 
 const (
 	// false
-	IsOwnerfalse IsOwner = false
+	IsOwnerfalse bool = false
 	// true
-	IsOwnertrue IsOwner = true
+	IsOwnertrue bool = true
 )
+
+func (I *IsOwner) SetForMarshal() {
+	I.XMLName.Local = "t:IsOwner"
+}
+
+func (I *IsOwner) GetSchema() *Schema {
+	return &SchemaTypes
+}

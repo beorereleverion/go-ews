@@ -2,15 +2,28 @@ package elements
 
 // The State element contains the lifecycle state that is set on a site mailbox.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/state-teammailboxlifecyclestatetype
-type StateTeamMailboxLifecycleStateType string
+import "encoding/xml"
+
+type StateTeamMailboxLifecycleStateType struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Active
-	StateTeamMailboxLifecycleStateTypeActive StateTeamMailboxLifecycleStateType = `Active`
+	StateTeamMailboxLifecycleStateTypeActive string = `Active`
 	// Closed
-	StateTeamMailboxLifecycleStateTypeClosed StateTeamMailboxLifecycleStateType = `Closed`
+	StateTeamMailboxLifecycleStateTypeClosed string = `Closed`
 	// PendingDelete
-	StateTeamMailboxLifecycleStateTypePendingDelete StateTeamMailboxLifecycleStateType = `PendingDelete`
+	StateTeamMailboxLifecycleStateTypePendingDelete string = `PendingDelete`
 	// Unlinked
-	StateTeamMailboxLifecycleStateTypeUnlinked StateTeamMailboxLifecycleStateType = `Unlinked`
+	StateTeamMailboxLifecycleStateTypeUnlinked string = `Unlinked`
 )
+
+func (S *StateTeamMailboxLifecycleStateType) SetForMarshal() {
+	S.XMLName.Local = "m:State"
+}
+
+func (S *StateTeamMailboxLifecycleStateType) GetSchema() *Schema {
+	return &SchemaMessages
+}

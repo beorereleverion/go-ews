@@ -2,13 +2,26 @@ package elements
 
 // The ConfigurationName element specifies the requested service configurations by name.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/configurationname
-type ConfigurationName string
+import "encoding/xml"
+
+type ConfigurationName struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// MailTips
-	ConfigurationNameMailTips ConfigurationName = `MailTips`
+	ConfigurationNameMailTips string = `MailTips`
 	// ProtectionRules
-	ConfigurationNameProtectionRules ConfigurationName = `ProtectionRules`
+	ConfigurationNameProtectionRules string = `ProtectionRules`
 	// UnifiedMessagingConfiguration
-	ConfigurationNameUnifiedMessagingConfiguration ConfigurationName = `UnifiedMessagingConfiguration`
+	ConfigurationNameUnifiedMessagingConfiguration string = `UnifiedMessagingConfiguration`
 )
+
+func (C *ConfigurationName) SetForMarshal() {
+	C.XMLName.Local = "m:ConfigurationName"
+}
+
+func (C *ConfigurationName) GetSchema() *Schema {
+	return &SchemaMessages
+}

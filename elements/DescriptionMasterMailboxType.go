@@ -2,4 +2,9 @@ package elements
 
 // The Description (MasterMailboxType) element is intended for internal use only.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/description-mastermailboxtype
-type DescriptionMasterMailboxType interface{}
+import "encoding/xml"
+
+type DescriptionMasterMailboxType struct {
+	XMLName xml.Name
+	TEXT    interface{} `xml:",chardata"`
+}

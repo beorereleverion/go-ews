@@ -2,11 +2,15 @@ package elements
 
 // The ResolveNames element defines a request to resolve ambiguous names.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/resolvenames
+import "encoding/xml"
+
 type ResolveNames struct {
+	XMLName xml.Name
+
 	// The ParentFolderIds element identifies folders for the FindItem and FindFolder operations to search.
-	ParentFolderIds *ParentFolderIds `xml:"m:ParentFolderIds"`
+	ParentFolderIds *ParentFolderIds `xml:"ParentFolderIds"`
 	// The UnresolvedEntry element contains the name of a contact or distribution list to resolve.
-	UnresolvedEntry *UnresolvedEntry `xml:"m:UnresolvedEntry"`
+	UnresolvedEntry *UnresolvedEntry `xml:"UnresolvedEntry"`
 	// Identifies the property set returned for contacts. This attribute was introduced in Exchange Server 2010 Service Pack 2 (SP2).
 	ContactDataShape *string `xml:"ContactDataShape,attr"`
 	// Describes whether the full contact details for public contacts for a resolved name are returned in the response. This attribute is required for public contacts. This value does not affect private contacts and private distribution lists, for which ItemId is always returned.
@@ -35,3 +39,11 @@ const (
 	// Contact folders that are identified by the ParentFolderIds property are searched first and then Active Directory is searched.
 	ResolveNamesContactsActiveDirectory = `ContactsActiveDirectory`
 )
+
+func (R *ResolveNames) SetForMarshal() {
+	R.XMLName.Local = "m:ResolveNames"
+}
+
+func (R *ResolveNames) GetSchema() *Schema {
+	return &SchemaMessages
+}

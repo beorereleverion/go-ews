@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/datetimestamp
 import "time"
 
-type DateTimeStamp time.Time
+import "encoding/xml"
+
+type DateTimeStamp struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (D *DateTimeStamp) SetForMarshal() {
+	D.XMLName.Local = "t:DateTimeStamp"
+}
+
+func (D *DateTimeStamp) GetSchema() *Schema {
+	return &SchemaTypes
+}

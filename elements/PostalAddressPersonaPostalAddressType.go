@@ -2,19 +2,23 @@ package elements
 
 // The PostalAddress element specifies the postal address for a persona.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/postaladdress-personapostaladdresstype
+import "encoding/xml"
+
 type PostalAddressPersonaPostalAddressType struct {
+	XMLName xml.Name
+
 	// The Accuracy element specifies the accuracy of the latitude and longitude of the associated postal address.
-	Accuracy *Accuracy `xml:"t:Accuracy"`
+	Accuracy *Accuracy `xml:"Accuracy"`
 	// The Altitude element specifies the altitude of a postal address.
-	Altitude *Altitude `xml:"t:Altitude"`
+	Altitude *Altitude `xml:"Altitude"`
 	// The AltitudeAccuracy element specifies the accuracy of the altitude property for a postal address.
-	AltitudeAccuracy *AltitudeAccuracy `xml:"t:AltitudeAccuracy"`
+	AltitudeAccuracy *AltitudeAccuracy `xml:"AltitudeAccuracy"`
 	// The City element represents the city name that is associated with a contact.
-	City *City `xml:"t:City"`
+	City *City `xml:"City"`
 	// The Country element identifies a country identifier in a postal address.
-	Country *Country `xml:"t:Country"`
+	Country *Country `xml:"Country"`
 	// The FormattedAddress element specifies the formatted display value of the associated postal address.
-	FormattedAddress *FormattedAddress `xml:"t:FormattedAddress"`
+	FormattedAddress *FormattedAddress `xml:"FormattedAddress"`
 	// The Latitude element specifies the latitude of the location of the associated postal address.
 	Latitude *Latitude `xml:"Latitude"`
 	// The LocationSource element specifies information about the origin of the associated postal address, for example, a contact or a telephone book.
@@ -24,13 +28,21 @@ type PostalAddressPersonaPostalAddressType struct {
 	// The Longitude element specifies the longitude of the location of the associated postal address.
 	Longitude *Longitude `xml:"Longitude"`
 	// The PostOfficeBox element specifies thepost office boxportion of a postal address.
-	PostOfficeBox *PostOfficeBox `xml:"t:PostOfficeBox"`
+	PostOfficeBox *PostOfficeBox `xml:"PostOfficeBox"`
 	// The PostalCode element represents the postal code for a contact item.
-	PostalCode *PostalCode `xml:"t:PostalCode"`
+	PostalCode *PostalCode `xml:"PostalCode"`
 	// The State element represents the state of residence for a contact item.
-	State *State `xml:"t:State"`
+	State *State `xml:"State"`
 	// The Street element represents a street address for a contact item.
-	Street *Street `xml:"t:Street"`
+	Street *Street `xml:"Street"`
 	// The Type element specifies the type of postal address or phone number, for example,HomeorBusiness.
-	Type *Typestring `xml:"t:Type"`
+	Type *Typestring `xml:"Type"`
+}
+
+func (P *PostalAddressPersonaPostalAddressType) SetForMarshal() {
+	P.XMLName.Local = "t:PostalAddress"
+}
+
+func (P *PostalAddressPersonaPostalAddressType) GetSchema() *Schema {
+	return &SchemaTypes
 }

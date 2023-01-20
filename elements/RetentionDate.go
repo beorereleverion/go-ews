@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/retentiondate
 import "time"
 
-type RetentionDate time.Time
+import "encoding/xml"
+
+type RetentionDate struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (R *RetentionDate) SetForMarshal() {
+	R.XMLName.Local = "t:RetentionDate"
+}
+
+func (R *RetentionDate) GetSchema() *Schema {
+	return &SchemaTypes
+}

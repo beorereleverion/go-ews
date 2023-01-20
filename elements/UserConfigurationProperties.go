@@ -2,17 +2,30 @@ package elements
 
 // The UserConfigurationProperties element specifies the property types to get in a GetUserConfiguration operation.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/userconfigurationproperties
-type UserConfigurationProperties string
+import "encoding/xml"
+
+type UserConfigurationProperties struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Specifies the identifier, dictionary, XML data, and binary data property types.
-	UserConfigurationPropertiesAll UserConfigurationProperties = `All`
+	UserConfigurationPropertiesAll string = `All`
 	// Specifies binary data property types.
-	UserConfigurationPropertiesBinaryData UserConfigurationProperties = `BinaryData`
+	UserConfigurationPropertiesBinaryData string = `BinaryData`
 	// Specifies dictionary property types.
-	UserConfigurationPropertiesDictionary UserConfigurationProperties = `Dictionary`
+	UserConfigurationPropertiesDictionary string = `Dictionary`
 	// Specifies the identifier property.
-	UserConfigurationPropertiesId UserConfigurationProperties = `Id`
+	UserConfigurationPropertiesId string = `Id`
 	// Specifies XML data property types.
-	UserConfigurationPropertiesXmlData UserConfigurationProperties = `XmlData`
+	UserConfigurationPropertiesXmlData string = `XmlData`
 )
+
+func (U *UserConfigurationProperties) SetForMarshal() {
+	U.XMLName.Local = "m:UserConfigurationProperties"
+}
+
+func (U *UserConfigurationProperties) GetSchema() *Schema {
+	return &SchemaMessages
+}

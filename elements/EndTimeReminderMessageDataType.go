@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/endtime-remindermessagedatatype
 import "time"
 
-type EndTimeReminderMessageDataType time.Time
+import "encoding/xml"
+
+type EndTimeReminderMessageDataType struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (E *EndTimeReminderMessageDataType) SetForMarshal() {
+	E.XMLName.Local = "t:EndTime"
+}
+
+func (E *EndTimeReminderMessageDataType) GetSchema() *Schema {
+	return &SchemaTypes
+}

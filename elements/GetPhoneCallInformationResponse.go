@@ -2,17 +2,21 @@ package elements
 
 // The GetPhoneCallInformationResponse element defines a response to a single GetPhoneCallInformation request.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/getphonecallinformationresponse
+import "encoding/xml"
+
 type GetPhoneCallInformationResponse struct {
+	XMLName xml.Name
+
 	// The DescriptiveLinkKey element is currently unused and is reserved for future use. It contains a value of 0.
-	DescriptiveLinkKey *DescriptiveLinkKey `xml:"m:DescriptiveLinkKey"`
+	DescriptiveLinkKey *DescriptiveLinkKey `xml:"DescriptiveLinkKey"`
 	// The MessageText element provides a text description of the status of the response.
-	MessageText *MessageText `xml:"m:MessageText"`
+	MessageText *MessageText `xml:"MessageText"`
 	// The MessageXml element provides additional error response information.
-	MessageXml *MessageXml `xml:"m:MessageXml"`
+	MessageXml *MessageXml `xml:"MessageXml"`
 	// The PhoneCallInformation element specifies the state information for a phone call.
-	PhoneCallInformation *PhoneCallInformation `xml:"m:PhoneCallInformation"`
+	PhoneCallInformation *PhoneCallInformation `xml:"PhoneCallInformation"`
 	// The ResponseCode element provides status information about the request.
-	ResponseCode *ResponseCode `xml:"m:ResponseCode"`
+	ResponseCode *ResponseCode `xml:"ResponseCode"`
 	// Describes the status of the response. The following values are valid for this attribute:  - Success  - Warning  - Error
 	ResponseClass *string `xml:"ResponseClass,attr"`
 }
@@ -25,3 +29,11 @@ const (
 	// Describes a request that cannot be fulfilled. The following are examples of sources of errors:  - Invalid attributes or elements  - Attributes or elements out of range  - Unknown tag  - Attribute or element not valid in the context  - Unauthorized access attempt by any client  - Server-side failure in response to a valid client-side call    Information about the error can be found in the ResponseCode and MessageText elements.
 	GetPhoneCallInformationResponseError = `Error`
 )
+
+func (G *GetPhoneCallInformationResponse) SetForMarshal() {
+	G.XMLName.Local = "m:GetPhoneCallInformationResponse"
+}
+
+func (G *GetPhoneCallInformationResponse) GetSchema() *Schema {
+	return &SchemaMessages
+}

@@ -2,13 +2,26 @@ package elements
 
 // The Presenters element specifies the presenters for an online meeting.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/presenters
-type Presenters string
+import "encoding/xml"
+
+type Presenters struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Disabled
-	PresentersDisabled Presenters = `Disabled`
+	PresentersDisabled string = `Disabled`
 	// Everyone
-	PresentersEveryone Presenters = `Everyone`
+	PresentersEveryone string = `Everyone`
 	// Internal
-	PresentersInternal Presenters = `Internal`
+	PresentersInternal string = `Internal`
 )
+
+func (P *Presenters) SetForMarshal() {
+	P.XMLName.Local = "t:Presenters"
+}
+
+func (P *Presenters) GetSchema() *Schema {
+	return &SchemaTypes
+}

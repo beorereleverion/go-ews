@@ -2,7 +2,11 @@ package elements
 
 // The ExtendedFieldURI element identifies an extended MAPI property.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/extendedfielduri
+import "encoding/xml"
+
 type ExtendedFieldURI struct {
+	XMLName xml.Name
+
 	// Defines the well-known property set IDs for extended MAPI properties.If this attribute is used, the PropertySetId and PropertyTag attributes cannot be used. This attribute must be used with either the PropertyId or PropertyName attribute, and the PropertyType attribute.The DistinguishedPropertySetId Attribute table later in this topic lists the possible values for this attribute.This attribute is optional.
 	DistinguishedPropertySetId *string `xml:"DistinguishedPropertySetId,attr"`
 	// Identifies an extended property by its dispatch ID. The dispatch ID can be identified in either decimal or hexadecimal formats. This property must be coupled with either DistinguishedPropertySetId or PropertySetId.If this attribute is used, the PropertyName and PropertyTag attributes cannot be used.This attribute is optional.
@@ -15,4 +19,12 @@ type ExtendedFieldURI struct {
 	PropertyTag *string `xml:"PropertyTag,attr"`
 	// Represents the property type of a property tag. This corresponds to the least significant word in a property tag.The PropertyType Attribute table later in this topic contains the possible values for this attribute.This attribute is required.
 	PropertyType *string `xml:"PropertyType,attr"`
+}
+
+func (E *ExtendedFieldURI) SetForMarshal() {
+	E.XMLName.Local = "t:ExtendedFieldURI"
+}
+
+func (E *ExtendedFieldURI) GetSchema() *Schema {
+	return &SchemaTypes
 }

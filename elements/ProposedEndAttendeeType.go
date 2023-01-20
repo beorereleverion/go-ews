@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/proposedend-attendeetype
 import "time"
 
-type ProposedEndAttendeeType time.Time
+import "encoding/xml"
+
+type ProposedEndAttendeeType struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (P *ProposedEndAttendeeType) SetForMarshal() {
+	P.XMLName.Local = "t:ProposedEnd"
+}
+
+func (P *ProposedEndAttendeeType) GetSchema() *Schema {
+	return &SchemaTypes
+}

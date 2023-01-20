@@ -2,79 +2,92 @@ package elements
 
 // The GlobalIconIndex element identifies the global icon index for all items in a conversation.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/globaliconindex
-type GlobalIconIndex string
+import "encoding/xml"
+
+type GlobalIconIndex struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Specifies the appointment item icon.
-	GlobalIconIndexAppointmentItem GlobalIconIndex = `AppointmentItem`
+	GlobalIconIndexAppointmentItem string = `AppointmentItem`
 	// Specifies the meeting icon.
-	GlobalIconIndexAppointmentMeet GlobalIconIndex = `AppointmentMeet`
+	GlobalIconIndexAppointmentMeet string = `AppointmentMeet`
 	// Specifies the meeting cancel icon.
-	GlobalIconIndexAppointmentMeetCancel GlobalIconIndex = `AppointmentMeetCancel`
+	GlobalIconIndexAppointmentMeetCancel string = `AppointmentMeetCancel`
 	// Specifies the meeting information icon.
-	GlobalIconIndexAppointmentMeetInfo GlobalIconIndex = `AppointmentMeetInfo`
+	GlobalIconIndexAppointmentMeetInfo string = `AppointmentMeetInfo`
 	// Specifies the icon for a maybe response to the meeting.
-	GlobalIconIndexAppointmentMeetMaybe GlobalIconIndex = `AppointmentMeetMaybe`
+	GlobalIconIndexAppointmentMeetMaybe string = `AppointmentMeetMaybe`
 	// Specifies the icon for a tentative response to the meeting.
-	GlobalIconIndexAppointmentMeetNY GlobalIconIndex = `AppointmentMeetNY`
+	GlobalIconIndexAppointmentMeetNY string = `AppointmentMeetNY`
 	// Specifies the meeting declined icon.
-	GlobalIconIndexAppointmentMeetNo GlobalIconIndex = `AppointmentMeetNo`
+	GlobalIconIndexAppointmentMeetNo string = `AppointmentMeetNo`
 	// Specifies the recurring meeting icon.
-	GlobalIconIndexAppointmentMeetRecur GlobalIconIndex = `AppointmentMeetRecur`
+	GlobalIconIndexAppointmentMeetRecur string = `AppointmentMeetRecur`
 	// Specifies the meeting acceptance icon.
-	GlobalIconIndexAppointmentMeetYes GlobalIconIndex = `AppointmentMeetYes`
+	GlobalIconIndexAppointmentMeetYes string = `AppointmentMeetYes`
 	// Specifies the recurring appointment icon.
-	GlobalIconIndexAppointmentRecur GlobalIconIndex = `AppointmentRecur`
+	GlobalIconIndexAppointmentRecur string = `AppointmentRecur`
 	// Specifies the default icon.
-	GlobalIconIndexDefault GlobalIconIndex = `Default`
+	GlobalIconIndexDefault string = `Default`
 	// Specifies the encrypted mail icon.
-	GlobalIconIndexMailEncrypted GlobalIconIndex = `MailEncrypted`
+	GlobalIconIndexMailEncrypted string = `MailEncrypted`
 	// Specifies the encrypted forwarded mail icon.
-	GlobalIconIndexMailEncryptedForwarded GlobalIconIndex = `MailEncryptedForwarded`
+	GlobalIconIndexMailEncryptedForwarded string = `MailEncryptedForwarded`
 	// Specifies the encrypted read mail icon.
-	GlobalIconIndexMailEncryptedRead GlobalIconIndex = `MailEncryptedRead`
+	GlobalIconIndexMailEncryptedRead string = `MailEncryptedRead`
 	// Specifies the encrypted replied to mail icon.
-	GlobalIconIndexMailEncryptedReplied GlobalIconIndex = `MailEncryptedReplied`
+	GlobalIconIndexMailEncryptedReplied string = `MailEncryptedReplied`
 	// Specifies the forwarded mail icon.
-	GlobalIconIndexMailForwarded GlobalIconIndex = `MailForwarded`
+	GlobalIconIndexMailForwarded string = `MailForwarded`
 	// Specifies the Information Rights Management (IRM)-protected mail icon.
-	GlobalIconIndexMailIrm GlobalIconIndex = `MailIrm`
+	GlobalIconIndexMailIrm string = `MailIrm`
 	// Specifies the IRM-protected forwarded mail icon.
-	GlobalIconIndexMailIrmForwarded GlobalIconIndex = `MailIrmForwarded`
+	GlobalIconIndexMailIrmForwarded string = `MailIrmForwarded`
 	// Specifies the IRM-protected replied to mail icon.
-	GlobalIconIndexMailIrmReplied GlobalIconIndex = `MailIrmReplied`
+	GlobalIconIndexMailIrmReplied string = `MailIrmReplied`
 	// Specifies the mail read icon.
-	GlobalIconIndexMailRead GlobalIconIndex = `MailRead`
+	GlobalIconIndexMailRead string = `MailRead`
 	// Specifies the replied to mail icon.
-	GlobalIconIndexMailReplied GlobalIconIndex = `MailReplied`
+	GlobalIconIndexMailReplied string = `MailReplied`
 	// Specifies the Secure/Multipurpose Internet Mail Extensions (S/MIME) signed mail icon.
-	GlobalIconIndexMailSmimeSigned GlobalIconIndex = `MailSmimeSigned`
+	GlobalIconIndexMailSmimeSigned string = `MailSmimeSigned`
 	// Specifies the S/MIME signed forwarded mail icon.
-	GlobalIconIndexMailSmimeSignedForwarded GlobalIconIndex = `MailSmimeSignedForwarded`
+	GlobalIconIndexMailSmimeSignedForwarded string = `MailSmimeSignedForwarded`
 	// Specifies the S/MIME signed read mail icon.
-	GlobalIconIndexMailSmimeSignedRead GlobalIconIndex = `MailSmimeSignedRead`
+	GlobalIconIndexMailSmimeSignedRead string = `MailSmimeSignedRead`
 	// Specifies the S/MIME signed replied to mail icon.
-	GlobalIconIndexMailSmimeSignedReplied GlobalIconIndex = `MailSmimeSignedReplied`
+	GlobalIconIndexMailSmimeSignedReplied string = `MailSmimeSignedReplied`
 	// Specifies the unread mail icon.
-	GlobalIconIndexMailUnread GlobalIconIndex = `MailUnread`
+	GlobalIconIndexMailUnread string = `MailUnread`
 	// Specifies the default icon for contacts.
-	GlobalIconIndexOutlookDefaultForContacts GlobalIconIndex = `OutlookDefaultForContacts`
+	GlobalIconIndexOutlookDefaultForContacts string = `OutlookDefaultForContacts`
 	// Specifies the icon for a post item.
-	GlobalIconIndexPostItem GlobalIconIndex = `PostItem`
+	GlobalIconIndexPostItem string = `PostItem`
 	// Specifies the SMS delivered mail icon.
-	GlobalIconIndexSmsDelivered GlobalIconIndex = `SmsDelivered`
+	GlobalIconIndexSmsDelivered string = `SmsDelivered`
 	// Specifies the icon for SMS routing to an external delivery point.
-	GlobalIconIndexSmsRoutedToDeliveryPoint GlobalIconIndex = `SmsRoutedToDeliveryPoint`
+	GlobalIconIndexSmsRoutedToDeliveryPoint string = `SmsRoutedToDeliveryPoint`
 	// Specifies the icon for SMS routing to an external messaging system.
-	GlobalIconIndexSmsRoutedToExternalMessagingSystem GlobalIconIndex = `SmsRoutedToExternalMessagingSystem`
+	GlobalIconIndexSmsRoutedToExternalMessagingSystem string = `SmsRoutedToExternalMessagingSystem`
 	// Specifies the icon for mail submitted for Short Message Service (SMS) routing.
-	GlobalIconIndexSmsSubmitted GlobalIconIndex = `SmsSubmitted`
+	GlobalIconIndexSmsSubmitted string = `SmsSubmitted`
 	// Specifies the task delegated icon.
-	GlobalIconIndexTaskDelegated GlobalIconIndex = `TaskDelegated`
+	GlobalIconIndexTaskDelegated string = `TaskDelegated`
 	// Specifies the task item icon.
-	GlobalIconIndexTaskItem GlobalIconIndex = `TaskItem`
+	GlobalIconIndexTaskItem string = `TaskItem`
 	// Specifies the task owned icon.
-	GlobalIconIndexTaskOwned GlobalIconIndex = `TaskOwned`
+	GlobalIconIndexTaskOwned string = `TaskOwned`
 	// Specifies the recurring task icon.
-	GlobalIconIndexTaskRecur GlobalIconIndex = `TaskRecur`
+	GlobalIconIndexTaskRecur string = `TaskRecur`
 )
+
+func (G *GlobalIconIndex) SetForMarshal() {
+	G.XMLName.Local = "t:GlobalIconIndex"
+}
+
+func (G *GlobalIconIndex) GetSchema() *Schema {
+	return &SchemaTypes
+}

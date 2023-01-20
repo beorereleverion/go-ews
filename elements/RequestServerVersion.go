@@ -2,7 +2,11 @@ package elements
 
 // The RequestServerVersion element contains the versioning information that identifies the schema version to target for a request.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/requestserverversion
+import "encoding/xml"
+
 type RequestServerVersion struct {
+	XMLName xml.Name
+
 	// Describes the version to target for the request. This attribute is required when the target server version is a version of Exchange starting with Exchange Server 2010.
 	Version *string `xml:"Version,attr"`
 }
@@ -23,3 +27,11 @@ const (
 	// Target the schema files for Exchange 2013 Service Pack 1 (SP1).
 	RequestServerVersionExchange2013_SP1 = `Exchange2013_SP1`
 )
+
+func (R *RequestServerVersion) SetForMarshal() {
+	R.XMLName.Local = "t:RequestServerVersion"
+}
+
+func (R *RequestServerVersion) GetSchema() *Schema {
+	return &SchemaTypes
+}

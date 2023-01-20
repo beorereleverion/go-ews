@@ -2,17 +2,30 @@ package elements
 
 // The DeliveryStatus element specifies the status for a message.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/deliverystatus
-type DeliveryStatus string
+import "encoding/xml"
+
+type DeliveryStatus struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Delivered
-	DeliveryStatusDelivered DeliveryStatus = `Delivered`
+	DeliveryStatusDelivered string = `Delivered`
 	// Pending
-	DeliveryStatusPending DeliveryStatus = `Pending`
+	DeliveryStatusPending string = `Pending`
 	// Read
-	DeliveryStatusRead DeliveryStatus = `Read`
+	DeliveryStatusRead string = `Read`
 	// Transferred
-	DeliveryStatusTransferred DeliveryStatus = `Transferred`
+	DeliveryStatusTransferred string = `Transferred`
 	// Unsuccessful
-	DeliveryStatusUnsuccessful DeliveryStatus = `Unsuccessful`
+	DeliveryStatusUnsuccessful string = `Unsuccessful`
 )
+
+func (D *DeliveryStatus) SetForMarshal() {
+	D.XMLName.Local = "t:DeliveryStatus"
+}
+
+func (D *DeliveryStatus) GetSchema() *Schema {
+	return &SchemaTypes
+}

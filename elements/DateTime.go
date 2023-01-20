@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/datetime
 import "time"
 
-type DateTime time.Time
+import "encoding/xml"
+
+type DateTime struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (D *DateTime) SetForMarshal() {
+	D.XMLName.Local = "t:DateTime"
+}
+
+func (D *DateTime) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/proposedend-meetingregistrationresponseobjecttype
 import "time"
 
-type ProposedEndMeetingRegistrationResponseObjectType time.Time
+import "encoding/xml"
+
+type ProposedEndMeetingRegistrationResponseObjectType struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (P *ProposedEndMeetingRegistrationResponseObjectType) SetForMarshal() {
+	P.XMLName.Local = "t:ProposedEnd"
+}
+
+func (P *ProposedEndMeetingRegistrationResponseObjectType) GetSchema() *Schema {
+	return &SchemaTypes
+}

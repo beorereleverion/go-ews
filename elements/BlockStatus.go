@@ -2,11 +2,24 @@ package elements
 
 // The BlockStatus element specifies the block status of an item.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/blockstatus
-type BlockStatus bool
+import "encoding/xml"
+
+type BlockStatus struct {
+	XMLName xml.Name
+	TEXT    bool `xml:",chardata"`
+}
 
 const (
 	// false
-	BlockStatusfalse BlockStatus = false
+	BlockStatusfalse bool = false
 	// true
-	BlockStatustrue BlockStatus = true
+	BlockStatustrue bool = true
 )
+
+func (B *BlockStatus) SetForMarshal() {
+	B.XMLName.Local = "t:BlockStatus"
+}
+
+func (B *BlockStatus) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/proposedend
 import "time"
 
-type ProposedEnd time.Time
+import "encoding/xml"
+
+type ProposedEnd struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (P *ProposedEnd) SetForMarshal() {
+	P.XMLName.Local = "t:ProposedEnd"
+}
+
+func (P *ProposedEnd) GetSchema() *Schema {
+	return &SchemaTypes
+}

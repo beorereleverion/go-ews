@@ -2,7 +2,11 @@ package elements
 
 // The ExtendedProperty element specifies an extended property for the Unified Contact Store.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/extendedproperty-pathtoextendedfieldtype
+import "encoding/xml"
+
 type ExtendedPropertyPathToExtendedFieldType struct {
+	XMLName xml.Name
+
 	// Indicates the distinguished property set identifier. This attribute is optional.
 	DistinguishedPropertySetId *string `xml:"DistinguishedPropertySetId,attr"`
 	// Indicates the field Uniform Resource Identifier (URI). This attribute is required. For possible values, see the FieldURI element.
@@ -17,4 +21,12 @@ type ExtendedPropertyPathToExtendedFieldType struct {
 	PropertyTag *string `xml:"PropertyTag,attr"`
 	// Indicates the property type. This attribute is required.
 	PropertyType *string `xml:"PropertyType,attr"`
+}
+
+func (E *ExtendedPropertyPathToExtendedFieldType) SetForMarshal() {
+	E.XMLName.Local = "t:ExtendedProperty"
+}
+
+func (E *ExtendedPropertyPathToExtendedFieldType) GetSchema() *Schema {
+	return &SchemaTypes
 }

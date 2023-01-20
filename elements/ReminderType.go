@@ -2,13 +2,26 @@ package elements
 
 // The ReminderType element specifies the type of reminders to return.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/remindertype
-type ReminderType string
+import "encoding/xml"
+
+type ReminderType struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// All
-	ReminderTypeAll ReminderType = `All`
+	ReminderTypeAll string = `All`
 	// Current
-	ReminderTypeCurrent ReminderType = `Current`
+	ReminderTypeCurrent string = `Current`
 	// Old
-	ReminderTypeOld ReminderType = `Old`
+	ReminderTypeOld string = `Old`
 )
+
+func (R *ReminderType) SetForMarshal() {
+	R.XMLName.Local = "m:ReminderType"
+}
+
+func (R *ReminderType) GetSchema() *Schema {
+	return &SchemaMessages
+}

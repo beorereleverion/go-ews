@@ -2,11 +2,24 @@ package elements
 
 // The Deduplication element indicates whether the search result should remove duplicate items.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/deduplication
-type Deduplication bool
+import "encoding/xml"
+
+type Deduplication struct {
+	XMLName xml.Name
+	TEXT    bool `xml:",chardata"`
+}
 
 const (
 	// false
-	Deduplicationfalse Deduplication = false
+	Deduplicationfalse bool = false
 	// true
-	Deduplicationtrue Deduplication = true
+	Deduplicationtrue bool = true
 )
+
+func (D *Deduplication) SetForMarshal() {
+	D.XMLName.Local = "t:Deduplication"
+}
+
+func (D *Deduplication) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/end-ex15websvcsotherref
 import "time"
 
-type End time.Time
+import "encoding/xml"
+
+type End struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (E *End) SetForMarshal() {
+	E.XMLName.Local = "t:End"
+}
+
+func (E *End) GetSchema() *Schema {
+	return &SchemaTypes
+}

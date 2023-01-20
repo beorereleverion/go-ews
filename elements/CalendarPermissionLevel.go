@@ -2,31 +2,44 @@ package elements
 
 // The CalendarPermissionLevel element represents the permission level that a user has on a Calendar folder. This element was introduced in Microsoft Exchange Server 2007 Service Pack 1 (SP1).
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/calendarpermissionlevel
-type CalendarPermissionLevel string
+import "encoding/xml"
+
+type CalendarPermissionLevel struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Author
-	CalendarPermissionLevelAuthor CalendarPermissionLevel = `Author`
+	CalendarPermissionLevelAuthor string = `Author`
 	// Contributor
-	CalendarPermissionLevelContributor CalendarPermissionLevel = `Contributor`
+	CalendarPermissionLevelContributor string = `Contributor`
 	// Custom
-	CalendarPermissionLevelCustom CalendarPermissionLevel = `Custom`
+	CalendarPermissionLevelCustom string = `Custom`
 	// Editor
-	CalendarPermissionLevelEditor CalendarPermissionLevel = `Editor`
+	CalendarPermissionLevelEditor string = `Editor`
 	// FreeBusyTimeAndSubjectAndLocation
-	CalendarPermissionLevelFreeBusyTimeAndSubjectAndLocation CalendarPermissionLevel = `FreeBusyTimeAndSubjectAndLocation`
+	CalendarPermissionLevelFreeBusyTimeAndSubjectAndLocation string = `FreeBusyTimeAndSubjectAndLocation`
 	// FreeBusyTimeOnly
-	CalendarPermissionLevelFreeBusyTimeOnly CalendarPermissionLevel = `FreeBusyTimeOnly`
+	CalendarPermissionLevelFreeBusyTimeOnly string = `FreeBusyTimeOnly`
 	// None
-	CalendarPermissionLevelNone CalendarPermissionLevel = `None`
+	CalendarPermissionLevelNone string = `None`
 	// NoneditingAuthor
-	CalendarPermissionLevelNoneditingAuthor CalendarPermissionLevel = `NoneditingAuthor`
+	CalendarPermissionLevelNoneditingAuthor string = `NoneditingAuthor`
 	// Owner
-	CalendarPermissionLevelOwner CalendarPermissionLevel = `Owner`
+	CalendarPermissionLevelOwner string = `Owner`
 	// PublishingAuthor
-	CalendarPermissionLevelPublishingAuthor CalendarPermissionLevel = `PublishingAuthor`
+	CalendarPermissionLevelPublishingAuthor string = `PublishingAuthor`
 	// PublishingEditor
-	CalendarPermissionLevelPublishingEditor CalendarPermissionLevel = `PublishingEditor`
+	CalendarPermissionLevelPublishingEditor string = `PublishingEditor`
 	// Reviewer
-	CalendarPermissionLevelReviewer CalendarPermissionLevel = `Reviewer`
+	CalendarPermissionLevelReviewer string = `Reviewer`
 )
+
+func (C *CalendarPermissionLevel) SetForMarshal() {
+	C.XMLName.Local = "t:CalendarPermissionLevel"
+}
+
+func (C *CalendarPermissionLevel) GetSchema() *Schema {
+	return &SchemaTypes
+}

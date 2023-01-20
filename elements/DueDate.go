@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/duedate
 import "time"
 
-type DueDate time.Time
+import "encoding/xml"
+
+type DueDate struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (D *DueDate) SetForMarshal() {
+	D.XMLName.Local = "t:DueDate"
+}
+
+func (D *DueDate) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -2,21 +2,34 @@ package elements
 
 // The RetentionAction element specifies the action performed on items with the retention tag.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/retentionaction
-type RetentionAction string
+import "encoding/xml"
+
+type RetentionAction struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// DeleteAndAllowRecovery
-	RetentionActionDeleteAndAllowRecovery RetentionAction = `DeleteAndAllowRecovery`
+	RetentionActionDeleteAndAllowRecovery string = `DeleteAndAllowRecovery`
 	// MarkAsPastRetentionLimit
-	RetentionActionMarkAsPastRetentionLimit RetentionAction = `MarkAsPastRetentionLimit`
+	RetentionActionMarkAsPastRetentionLimit string = `MarkAsPastRetentionLimit`
 	// MoveToArchive
-	RetentionActionMoveToArchive RetentionAction = `MoveToArchive`
+	RetentionActionMoveToArchive string = `MoveToArchive`
 	// MoveToDeletedItems
-	RetentionActionMoveToDeletedItems RetentionAction = `MoveToDeletedItems`
+	RetentionActionMoveToDeletedItems string = `MoveToDeletedItems`
 	// MoveToFolder
-	RetentionActionMoveToFolder RetentionAction = `MoveToFolder`
+	RetentionActionMoveToFolder string = `MoveToFolder`
 	// None
-	RetentionActionNone RetentionAction = `None`
+	RetentionActionNone string = `None`
 	// PermanentlyDelete
-	RetentionActionPermanentlyDelete RetentionAction = `PermanentlyDelete`
+	RetentionActionPermanentlyDelete string = `PermanentlyDelete`
 )
+
+func (R *RetentionAction) SetForMarshal() {
+	R.XMLName.Local = "t:RetentionAction"
+}
+
+func (R *RetentionAction) GetSchema() *Schema {
+	return &SchemaTypes
+}

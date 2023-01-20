@@ -2,79 +2,92 @@ package elements
 
 // The IconIndex element identifies the icon index for an item or conversation.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/iconindex
-type IconIndex string
+import "encoding/xml"
+
+type IconIndex struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Specifies the appointment item icon.
-	IconIndexAppointmentItem IconIndex = `AppointmentItem`
+	IconIndexAppointmentItem string = `AppointmentItem`
 	// Specifies the meeting icon.
-	IconIndexAppointmentMeet IconIndex = `AppointmentMeet`
+	IconIndexAppointmentMeet string = `AppointmentMeet`
 	// Specifies the meeting cancel icon.
-	IconIndexAppointmentMeetCancel IconIndex = `AppointmentMeetCancel`
+	IconIndexAppointmentMeetCancel string = `AppointmentMeetCancel`
 	// Specifies the meeting information icon.
-	IconIndexAppointmentMeetInfo IconIndex = `AppointmentMeetInfo`
+	IconIndexAppointmentMeetInfo string = `AppointmentMeetInfo`
 	// Specifies the icon for a maybe response to the meeting.
-	IconIndexAppointmentMeetMaybe IconIndex = `AppointmentMeetMaybe`
+	IconIndexAppointmentMeetMaybe string = `AppointmentMeetMaybe`
 	// Specifies the icon for a tentative response to the meeting.
-	IconIndexAppointmentMeetNY IconIndex = `AppointmentMeetNY`
+	IconIndexAppointmentMeetNY string = `AppointmentMeetNY`
 	// Specifies the meeting declined icon.
-	IconIndexAppointmentMeetNo IconIndex = `AppointmentMeetNo`
+	IconIndexAppointmentMeetNo string = `AppointmentMeetNo`
 	// Specifies the recurring meeting icon.
-	IconIndexAppointmentMeetRecur IconIndex = `AppointmentMeetRecur`
+	IconIndexAppointmentMeetRecur string = `AppointmentMeetRecur`
 	// Specifies the meeting acceptance icon.
-	IconIndexAppointmentMeetYes IconIndex = `AppointmentMeetYes`
+	IconIndexAppointmentMeetYes string = `AppointmentMeetYes`
 	// Specifies the recurring appointment icon.
-	IconIndexAppointmentRecur IconIndex = `AppointmentRecur`
+	IconIndexAppointmentRecur string = `AppointmentRecur`
 	// Specifies the default icon.
-	IconIndexDefault IconIndex = `Default`
+	IconIndexDefault string = `Default`
 	// Specifies the encrypted mail icon.
-	IconIndexMailEncrypted IconIndex = `MailEncrypted`
+	IconIndexMailEncrypted string = `MailEncrypted`
 	// Specifies the encrypted forwarded mail icon.
-	IconIndexMailEncryptedForwarded IconIndex = `MailEncryptedForwarded`
+	IconIndexMailEncryptedForwarded string = `MailEncryptedForwarded`
 	// Specifies the encrypted read mail icon.
-	IconIndexMailEncryptedRead IconIndex = `MailEncryptedRead`
+	IconIndexMailEncryptedRead string = `MailEncryptedRead`
 	// Specifies the encrypted replied to mail icon.
-	IconIndexMailEncryptedReplied IconIndex = `MailEncryptedReplied`
+	IconIndexMailEncryptedReplied string = `MailEncryptedReplied`
 	// Specifies the forwarded mail icon.
-	IconIndexMailForwarded IconIndex = `MailForwarded`
+	IconIndexMailForwarded string = `MailForwarded`
 	// Specifies the Information Rights Management (IRM)-protected mail icon.
-	IconIndexMailIrm IconIndex = `MailIrm`
+	IconIndexMailIrm string = `MailIrm`
 	// Specifies the IRM-protected forwarded mail icon.
-	IconIndexMailIrmForwarded IconIndex = `MailIrmForwarded`
+	IconIndexMailIrmForwarded string = `MailIrmForwarded`
 	// Specifies the IRM-protected replied to mail icon.
-	IconIndexMailIrmReplied IconIndex = `MailIrmReplied`
+	IconIndexMailIrmReplied string = `MailIrmReplied`
 	// Specifies the mail read icon.
-	IconIndexMailRead IconIndex = `MailRead`
+	IconIndexMailRead string = `MailRead`
 	// Specifies the replied to mail icon.
-	IconIndexMailReplied IconIndex = `MailReplied`
+	IconIndexMailReplied string = `MailReplied`
 	// Specifies the Secure/Multipurpose Internet Mail Extensions (S/MIME) signed mail icon.
-	IconIndexMailSmimeSigned IconIndex = `MailSmimeSigned`
+	IconIndexMailSmimeSigned string = `MailSmimeSigned`
 	// Specifies the S/MIME signed forwarded mail icon.
-	IconIndexMailSmimeSignedForwarded IconIndex = `MailSmimeSignedForwarded`
+	IconIndexMailSmimeSignedForwarded string = `MailSmimeSignedForwarded`
 	// Specifies the S/MIME signed read mail icon.
-	IconIndexMailSmimeSignedRead IconIndex = `MailSmimeSignedRead`
+	IconIndexMailSmimeSignedRead string = `MailSmimeSignedRead`
 	// Specifies the S/MIME signed replied to mail icon.
-	IconIndexMailSmimeSignedReplied IconIndex = `MailSmimeSignedReplied`
+	IconIndexMailSmimeSignedReplied string = `MailSmimeSignedReplied`
 	// Specifies the unread mail icon.
-	IconIndexMailUnread IconIndex = `MailUnread`
+	IconIndexMailUnread string = `MailUnread`
 	// Specifies the default icon for contacts.
-	IconIndexOutlookDefaultForContacts IconIndex = `OutlookDefaultForContacts`
+	IconIndexOutlookDefaultForContacts string = `OutlookDefaultForContacts`
 	// Specifies the icon for a post item.
-	IconIndexPostItem IconIndex = `PostItem`
+	IconIndexPostItem string = `PostItem`
 	// Specifies the SMS delivered mail icon.
-	IconIndexSmsDelivered IconIndex = `SmsDelivered`
+	IconIndexSmsDelivered string = `SmsDelivered`
 	// Specifies the icon for SMS routing to an external delivery point.
-	IconIndexSmsRoutedToDeliveryPoint IconIndex = `SmsRoutedToDeliveryPoint`
+	IconIndexSmsRoutedToDeliveryPoint string = `SmsRoutedToDeliveryPoint`
 	// Specifies the icon for SMS routing to an external messaging system.
-	IconIndexSmsRoutedToExternalMessagingSystem IconIndex = `SmsRoutedToExternalMessagingSystem`
+	IconIndexSmsRoutedToExternalMessagingSystem string = `SmsRoutedToExternalMessagingSystem`
 	// Specifies the icon mail submitted for Short Message Service (SMS) routing.
-	IconIndexSmsSubmitted IconIndex = `SmsSubmitted`
+	IconIndexSmsSubmitted string = `SmsSubmitted`
 	// Specifies the task delegated icon.
-	IconIndexTaskDelegated IconIndex = `TaskDelegated`
+	IconIndexTaskDelegated string = `TaskDelegated`
 	// Specifies the task item icon.
-	IconIndexTaskItem IconIndex = `TaskItem`
+	IconIndexTaskItem string = `TaskItem`
 	// Specifies the task owned icon.
-	IconIndexTaskOwned IconIndex = `TaskOwned`
+	IconIndexTaskOwned string = `TaskOwned`
 	// Specifies the recurring task icon.
-	IconIndexTaskRecur IconIndex = `TaskRecur`
+	IconIndexTaskRecur string = `TaskRecur`
 )
+
+func (I *IconIndex) SetForMarshal() {
+	I.XMLName.Local = "t:IconIndex"
+}
+
+func (I *IconIndex) GetSchema() *Schema {
+	return &SchemaTypes
+}

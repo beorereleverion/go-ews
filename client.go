@@ -9,10 +9,10 @@ import (
 	"net/http/httputil"
 
 	"github.com/Azure/go-ntlmssp"
+	"github.com/beorereleverion/go-ews/operations"
 )
 
 type Envelope interface {
-	GetEnvelopeStruct() interface{}
 	GetEnvelopeBytes() ([]byte, error)
 }
 
@@ -20,6 +20,7 @@ type Client interface {
 	SendAndReceive(e Envelope) ([]byte, error)
 	GetServerAddr() string
 	GetUsername() string
+	DoRequest(e Envelope, oe operations.Element) error
 }
 
 type client struct {
@@ -50,6 +51,14 @@ func NewClient(serverAddress, username, password string, config Config) Client {
 		password:      password,
 		config:        &config,
 	}
+}
+
+func (c *client) DoRequest(e Envelope, oe operations.Element) error {
+	bArr, err := c.SendAndReceive(e)
+	if err != nil {
+		return err
+	}
+	return operations.Unmarshal(bArr, oe)
 }
 
 func (c *client) SendAndReceive(e Envelope) ([]byte, error) {
@@ -89,7 +98,6 @@ func (c *client) SendAndReceive(e Envelope) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return respBytes, err
 }
 

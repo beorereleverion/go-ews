@@ -4,4 +4,17 @@ package elements
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/creationtime
 import "time"
 
-type CreationTime time.Time
+import "encoding/xml"
+
+type CreationTime struct {
+	XMLName xml.Name
+	TEXT    time.Time `xml:",chardata"`
+}
+
+func (C *CreationTime) SetForMarshal() {
+	C.XMLName.Local = "t:CreationTime"
+}
+
+func (C *CreationTime) GetSchema() *Schema {
+	return &SchemaTypes
+}

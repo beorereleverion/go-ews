@@ -2,11 +2,15 @@ package elements
 
 // The ClientExtension element contains user and configuration information about an app.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/clientextension
+import "encoding/xml"
+
 type ClientExtension struct {
+	XMLName xml.Name
+
 	// The Manifest element contains the base64-encoded app manifest file.
 	Manifest *Manifest `xml:"Manifest"`
 	// The SpecificUsers element specifies the email accounts that can access the app.
-	SpecificUsers *SpecificUsers `xml:"t:SpecificUsers"`
+	SpecificUsers *SpecificUsers `xml:"SpecificUsers"`
 	// Specifies the status code of a mail app in an unexpected state.
 	AppStatus *string `xml:"AppStatus,attr"`
 	// Specifies the license token for paid or trial mail apps.
@@ -27,4 +31,12 @@ type ClientExtension struct {
 	Scope *string `xml:"Scope,attr"`
 	// Specifies the type of the app.
 	Type *string `xml:"Type,attr"`
+}
+
+func (C *ClientExtension) SetForMarshal() {
+	C.XMLName.Local = "t:ClientExtension"
+}
+
+func (C *ClientExtension) GetSchema() *Schema {
+	return &SchemaTypes
 }

@@ -2,19 +2,24 @@ package elements
 
 // The LocationSource element specifies information about the origin of the associated postal address, for example, a contact or a telephone book.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/locationsource
-type LocationSource string
+import "encoding/xml"
+
+type LocationSource struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Contact
-	LocationSourceContact LocationSource = `Contact`
+	LocationSourceContact string = `Contact`
 	// Device
-	LocationSourceDevice LocationSource = `Device`
+	LocationSourceDevice string = `Device`
 	// LocationServices
-	LocationSourceLocationServices LocationSource = `LocationServices`
+	LocationSourceLocationServices string = `LocationServices`
 	// None
-	LocationSourceNone LocationSource = `None`
+	LocationSourceNone string = `None`
 	// PhonebookServices
-	LocationSourcePhonebookServices LocationSource = `PhonebookServices`
+	LocationSourcePhonebookServices string = `PhonebookServices`
 	// Resource
-	LocationSourceResource LocationSource = `Resource`
+	LocationSourceResource string = `Resource`
 )

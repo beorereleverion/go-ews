@@ -2,45 +2,58 @@ package elements
 
 // The Type element specifies the type of folder used in a retention policy.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/type-elcfoldertype
-type TypeElcFolderType string
+import "encoding/xml"
+
+type TypeElcFolderType struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// All
-	TypeElcFolderTypeAll TypeElcFolderType = `All`
+	TypeElcFolderTypeAll string = `All`
 	// Calendar
-	TypeElcFolderTypeCalendar TypeElcFolderType = `Calendar`
+	TypeElcFolderTypeCalendar string = `Calendar`
 	// Contacts
-	TypeElcFolderTypeContacts TypeElcFolderType = `Contacts`
+	TypeElcFolderTypeContacts string = `Contacts`
 	// ConversationHistory
-	TypeElcFolderTypeConversationHistory TypeElcFolderType = `ConversationHistory`
+	TypeElcFolderTypeConversationHistory string = `ConversationHistory`
 	// DeletedItems
-	TypeElcFolderTypeDeletedItems TypeElcFolderType = `DeletedItems`
+	TypeElcFolderTypeDeletedItems string = `DeletedItems`
 	// Drafts
-	TypeElcFolderTypeDrafts TypeElcFolderType = `Drafts`
+	TypeElcFolderTypeDrafts string = `Drafts`
 	// Inbox
-	TypeElcFolderTypeInbox TypeElcFolderType = `Inbox`
+	TypeElcFolderTypeInbox string = `Inbox`
 	// Journal
-	TypeElcFolderTypeJournal TypeElcFolderType = `Journal`
+	TypeElcFolderTypeJournal string = `Journal`
 	// JunkEmail
-	TypeElcFolderTypeJunkEmail TypeElcFolderType = `JunkEmail`
+	TypeElcFolderTypeJunkEmail string = `JunkEmail`
 	// ManagedCustomFolder
-	TypeElcFolderTypeManagedCustomFolder TypeElcFolderType = `ManagedCustomFolder`
+	TypeElcFolderTypeManagedCustomFolder string = `ManagedCustomFolder`
 	// NonIpmRoot
-	TypeElcFolderTypeNonIpmRoot TypeElcFolderType = `NonIpmRoot`
+	TypeElcFolderTypeNonIpmRoot string = `NonIpmRoot`
 	// Notes
-	TypeElcFolderTypeNotes TypeElcFolderType = `Notes`
+	TypeElcFolderTypeNotes string = `Notes`
 	// Outbox
-	TypeElcFolderTypeOutbox TypeElcFolderType = `Outbox`
+	TypeElcFolderTypeOutbox string = `Outbox`
 	// Personal
-	TypeElcFolderTypePersonal TypeElcFolderType = `Personal`
+	TypeElcFolderTypePersonal string = `Personal`
 	// RecoverableItems
-	TypeElcFolderTypeRecoverableItems TypeElcFolderType = `RecoverableItems`
+	TypeElcFolderTypeRecoverableItems string = `RecoverableItems`
 	// RssSubscriptions
-	TypeElcFolderTypeRssSubscriptions TypeElcFolderType = `RssSubscriptions`
+	TypeElcFolderTypeRssSubscriptions string = `RssSubscriptions`
 	// SentItems
-	TypeElcFolderTypeSentItems TypeElcFolderType = `SentItems`
+	TypeElcFolderTypeSentItems string = `SentItems`
 	// SyncIssues
-	TypeElcFolderTypeSyncIssues TypeElcFolderType = `SyncIssues`
+	TypeElcFolderTypeSyncIssues string = `SyncIssues`
 	// Tasks
-	TypeElcFolderTypeTasks TypeElcFolderType = `Tasks`
+	TypeElcFolderTypeTasks string = `Tasks`
 )
+
+func (T *TypeElcFolderType) SetForMarshal() {
+	T.XMLName.Local = "t:Type"
+}
+
+func (T *TypeElcFolderType) GetSchema() *Schema {
+	return &SchemaTypes
+}

@@ -2,9 +2,13 @@ package elements
 
 // The DistinguishedFolderId element identifies folders that can be referenced by name. If you do not use this element, you must use the FolderId element to identify a folder.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/distinguishedfolderid
+import "encoding/xml"
+
 type DistinguishedFolderId struct {
+	XMLName xml.Name
+
 	// The Mailbox element identifies a mail-enabled Active Directory object.
-	Mailbox *Mailbox `xml:"t:Mailbox"`
+	Mailbox *Mailbox `xml:"Mailbox"`
 	// Contains a string that identifies a version of a folder that is identified by the Id attribute. This attribute is optional. Use this attribute to make sure that the correct version of a folder is used.
 	ChangeKey *string `xml:"ChangeKey,attr"`
 	// Contains a string that identifies a default folder. This attribute is required.
@@ -95,3 +99,11 @@ const (
 	// Represents the Favorites folder.
 	DistinguishedFolderIdfavorites = `favorites`
 )
+
+func (D *DistinguishedFolderId) SetForMarshal() {
+	D.XMLName.Local = "t:DistinguishedFolderId"
+}
+
+func (D *DistinguishedFolderId) GetSchema() *Schema {
+	return &SchemaTypes
+}

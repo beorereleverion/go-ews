@@ -2,27 +2,40 @@ package elements
 
 // The PendingMailTips element indicates that the mail tips in this element could not be evaluated before the server's processing timeout expired.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/pendingmailtips
-type PendingMailTips string
+import "encoding/xml"
+
+type PendingMailTips struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Represents all available mail tips.
-	PendingMailTipsAll PendingMailTips = `All`
+	PendingMailTipsAll string = `All`
 	// Represents a custom mail tip.
-	PendingMailTipsCustomMailTip PendingMailTips = `CustomMailTip`
+	PendingMailTipsCustomMailTip string = `CustomMailTip`
 	// Indicates whether delivery restrictions will prevent the sender's message from reaching the recipient.
-	PendingMailTipsDeliveryRestriction PendingMailTips = `DeliveryRestriction`
+	PendingMailTipsDeliveryRestriction string = `DeliveryRestriction`
 	// Represents the count of external members.
-	PendingMailTipsExternalMemberCount PendingMailTips = `ExternalMemberCount`
+	PendingMailTipsExternalMemberCount string = `ExternalMemberCount`
 	// Indicates whether the recipient is invalid.
-	PendingMailTipsInvalidRecipient PendingMailTips = `InvalidRecipient`
+	PendingMailTipsInvalidRecipient string = `InvalidRecipient`
 	// Represents the status for a mailbox being full.
-	PendingMailTipsMailboxFullStatus PendingMailTips = `MailboxFullStatus`
+	PendingMailTipsMailboxFullStatus string = `MailboxFullStatus`
 	// Represents the maximum message size a recipient can accept.
-	PendingMailTipsMaxMessageSize PendingMailTips = `MaxMessageSize`
+	PendingMailTipsMaxMessageSize string = `MaxMessageSize`
 	// Indicates whether the sender's message will be reviewed by a moderator.
-	PendingMailTipsModerationStatus PendingMailTips = `ModerationStatus`
+	PendingMailTipsModerationStatus string = `ModerationStatus`
 	// Represents the Out of Office (OOF) message.
-	PendingMailTipsOutOfOfficeMessage PendingMailTips = `OutOfOfficeMessage`
+	PendingMailTipsOutOfOfficeMessage string = `OutOfOfficeMessage`
 	// Represents the count of all members.
-	PendingMailTipsTotalMemberCount PendingMailTips = `TotalMemberCount`
+	PendingMailTipsTotalMemberCount string = `TotalMemberCount`
 )
+
+func (P *PendingMailTips) SetForMarshal() {
+	P.XMLName.Local = "t:PendingMailTips"
+}
+
+func (P *PendingMailTips) GetSchema() *Schema {
+	return &SchemaTypes
+}

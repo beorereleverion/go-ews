@@ -2,31 +2,44 @@ package elements
 
 // The SearchItemKind element indicates the type of items that are searched for a FindMailboxStatisticsByKeyword operation.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/searchitemkind
-type SearchItemKind string
+import "encoding/xml"
+
+type SearchItemKind struct {
+	XMLName xml.Name
+	TEXT    string `xml:",chardata"`
+}
 
 const (
 	// Contacts - Indicates that contacts are searched for keywords.
-	SearchItemKindContacts SearchItemKind = `Contacts`
+	SearchItemKindContacts string = `Contacts`
 	// Docs - Indicates that documents are searched for keywords.
-	SearchItemKindDocs SearchItemKind = `Docs`
+	SearchItemKindDocs string = `Docs`
 	// Email - Indicates that email messages are searched for keywords.
-	SearchItemKindEmail SearchItemKind = `Email`
+	SearchItemKindEmail string = `Email`
 	// Faxes - Indicates that faxes are searched for keywords.
-	SearchItemKindFaxes SearchItemKind = `Faxes`
+	SearchItemKindFaxes string = `Faxes`
 	// Im - Indicates that instant messages are searched for keywords.
-	SearchItemKindIm SearchItemKind = `Im`
+	SearchItemKindIm string = `Im`
 	// Journals - Indicates that journals are searched for keywords.
-	SearchItemKindJournals SearchItemKind = `Journals`
+	SearchItemKindJournals string = `Journals`
 	// Meetings - Indicates that meetings are searched for keywords.
-	SearchItemKindMeetings SearchItemKind = `Meetings`
+	SearchItemKindMeetings string = `Meetings`
 	// Notes - Indicates that notes are searched for keywords.
-	SearchItemKindNotes SearchItemKind = `Notes`
+	SearchItemKindNotes string = `Notes`
 	// Posts - Indicates that posts are searched for keywords.
-	SearchItemKindPosts SearchItemKind = `Posts`
+	SearchItemKindPosts string = `Posts`
 	// Rssfeeds - Indicates that RSS feeds are searched for keywords.
-	SearchItemKindRssfeeds SearchItemKind = `Rssfeeds`
+	SearchItemKindRssfeeds string = `Rssfeeds`
 	// Tasks - Indicates that tasks are searched for keywords.
-	SearchItemKindTasks SearchItemKind = `Tasks`
+	SearchItemKindTasks string = `Tasks`
 	// Voicemail - Indicates that voice mails are searched for keywords.
-	SearchItemKindVoicemail SearchItemKind = `Voicemail`
+	SearchItemKindVoicemail string = `Voicemail`
 )
+
+func (S *SearchItemKind) SetForMarshal() {
+	S.XMLName.Local = "t:SearchItemKind"
+}
+
+func (S *SearchItemKind) GetSchema() *Schema {
+	return &SchemaTypes
+}

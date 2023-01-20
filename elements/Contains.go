@@ -2,15 +2,19 @@ package elements
 
 // The Contains element represents a search expression that determines whether a given property contains the supplied constant string value.
 // https://learn.microsoft.com/en-us/exchange/client-developer/web-service-reference/contains
+import "encoding/xml"
+
 type Contains struct {
+	XMLName xml.Name
+
 	// The Constant element identifies a constant value in a restriction.
-	Constant *Constant `xml:"t:Constant"`
+	Constant *Constant `xml:"Constant"`
 	// The ExtendedFieldURI element identifies an extended MAPI property.
-	ExtendedFieldURI *ExtendedFieldURI `xml:"t:ExtendedFieldURI"`
+	ExtendedFieldURI *ExtendedFieldURI `xml:"ExtendedFieldURI"`
 	// The FieldURI element identifies frequently referenced properties by URI.
-	FieldURI *FieldURI `xml:"t:FieldURI"`
+	FieldURI *FieldURI `xml:"FieldURI"`
 	// The IndexedFieldURI element identifies individual members of a dictionary.
-	IndexedFieldURI *IndexedFieldURI `xml:"t:IndexedFieldURI"`
+	IndexedFieldURI *IndexedFieldURI `xml:"IndexedFieldURI"`
 	// Determines whether the search ignores cases and spaces.
 	ContainmentComparison *string `xml:"ContainmentComparison,attr"`
 	// Identifies the boundaries of a search.
@@ -45,3 +49,11 @@ const (
 	// The comparison is between an exact phrase in the string and the constant.
 	ContainsExactPhrase = `ExactPhrase`
 )
+
+func (C *Contains) SetForMarshal() {
+	C.XMLName.Local = "t:Contains"
+}
+
+func (C *Contains) GetSchema() *Schema {
+	return &SchemaTypes
+}
