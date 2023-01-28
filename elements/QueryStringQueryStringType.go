@@ -13,6 +13,7 @@ type QueryStringQueryStringType struct {
 	ReturnDeletedItems *string `xml:"ReturnDeletedItems,attr"`
 	// Indicates that highlighted terms should be returned.
 	ReturnHighlightTerms *string `xml:"ReturnHighlightTerms,attr"`
+	TEXT                 string  `xml:",chardata"`
 }
 
 func (Q *QueryStringQueryStringType) SetForMarshal() {

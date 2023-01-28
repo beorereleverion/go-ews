@@ -11,6 +11,7 @@ type Body struct {
 	BodyType *string `xml:"BodyType,attr"`
 	// Boolean value that indicates whether the body is truncated.
 	IsTruncated *string `xml:"IsTruncated,attr"`
+	TEXT    string `xml:",chardata"`
 }
 
 func (B *Body) SetForMarshal() {

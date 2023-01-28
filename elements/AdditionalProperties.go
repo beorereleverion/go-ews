@@ -8,11 +8,11 @@ type AdditionalProperties struct {
 	XMLName xml.Name
 
 	// The ExtendedFieldURI element identifies an extended MAPI property.
-	ExtendedFieldURI *ExtendedFieldURI `xml:"ExtendedFieldURI"`
+	ExtendedFieldURI []*ExtendedFieldURI `xml:"ExtendedFieldURI"`
 	// The FieldURI element identifies frequently referenced properties by URI.
-	FieldURI *FieldURI `xml:"FieldURI"`
+	FieldURI []*FieldURI `xml:"FieldURI"`
 	// The IndexedFieldURI element identifies individual members of a dictionary.
-	IndexedFieldURI *IndexedFieldURI `xml:"IndexedFieldURI"`
+	IndexedFieldURI []*IndexedFieldURI `xml:"IndexedFieldURI"`
 }
 
 func (A *AdditionalProperties) SetForMarshal() {

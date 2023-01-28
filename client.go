@@ -9,6 +9,7 @@ import (
 	"net/http/httputil"
 
 	"github.com/Azure/go-ntlmssp"
+	"github.com/beorereleverion/go-ews/elements"
 	"github.com/beorereleverion/go-ews/operations"
 )
 
@@ -21,6 +22,10 @@ type Client interface {
 	GetServerAddr() string
 	GetUsername() string
 	DoRequest(e Envelope, oe operations.Element) error
+	FindPeople(eItem *elements.FindPeople) (*elements.FindPeopleResponse, error)
+	GetFolder(eItem *elements.GetFolder) (*elements.GetFolderResponse, error)
+	FindItem(eItem *elements.FindItem) (*elements.FindItemResponse, error)
+	CreateItem(eItem *elements.CreateItem) (*elements.CreateItemResponse, error)
 }
 
 type client struct {

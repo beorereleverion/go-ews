@@ -90,8 +90,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf(`%v
-`, gierResp.ResponseMessages.GetItemResponseMessage.Items.CalendarItem[0].Recurrence.WeeklyRecurrence.DaysOfWeek.TEXT)
+	fmt.Printf("%v\n", gierResp.ResponseMessages.GetItemResponseMessage.Items.CalendarItem[0].Recurrence.WeeklyRecurrence.DaysOfWeek.TEXT)
 }
 
 func setOSEnvs() {
