@@ -124,7 +124,7 @@ type MeetingMessage struct {
 	// The Subject element represents the subject property of Exchange store items. The subject is limited to 255 characters.
 	Subject *Subject `xml:"Subject"`
 	// The ToRecipients element contains an array of recipients of an item. These are the primary recipients of an item.
-	ToRecipients *ToRecipients `xml:"ToRecipients"`
+	ToRecipients []*ToRecipients `xml:"ToRecipients"`
 	// The UID element uniquely identifies a calendar item.
 	UID *UID `xml:"UID"`
 	// The UniqueBody element represents an HTML fragment or plain text which represents the unique body of this conversation.

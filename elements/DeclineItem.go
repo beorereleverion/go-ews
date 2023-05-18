@@ -38,7 +38,7 @@ type DeclineItem struct {
 	// The Sensitivity element indicates the sensitivity level of an item.
 	Sensitivity *Sensitivity `xml:"Sensitivity"`
 	// The ToRecipients element contains an array of recipients of an item. These are the primary recipients of an item.
-	ToRecipients *ToRecipients `xml:"ToRecipients"`
+	ToRecipients []*ToRecipients `xml:"ToRecipients"`
 }
 
 func (D *DeclineItem) SetForMarshal() {

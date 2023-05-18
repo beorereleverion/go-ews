@@ -24,7 +24,7 @@ func main() {
 		MessageDisposition: getPTR("SendAndSaveCopy"),
 		Items: &elements.ItemsNonEmptyArrayOfAllItemsType{
 			Message: &elements.Message{
-				
+
 				ItemClass: &elements.ItemClass{
 					TEXT: "IPM.Note",
 				},
@@ -35,13 +35,13 @@ func main() {
 					BodyType: getPTR("Text"),
 					TEXT:     "Priority - Update specification",
 				},
-				ToRecipients: &elements.ToRecipients{
+				ToRecipients: []*elements.ToRecipients{{
 					Mailbox: &elements.Mailbox{
 						EmailAddress: &elements.EmailAddressNonEmptyStringType{
 							TEXT: "sschmidt@example.com",
 						},
 					},
-				},
+				}},
 				IsRead: &elements.IsRead{
 					TEXT: false,
 				},
@@ -54,7 +54,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%#v\n", createItemResponse)
+	fmt.Printf("%#v\n", createItemResponse.ResponseMessages)
 }
 
 func setOSEnvs() {

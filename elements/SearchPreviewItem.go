@@ -46,7 +46,7 @@ type SearchPreviewItem struct {
 	// The Subject element represents the subject property of Exchange store items. The subject is limited to 255 characters.
 	Subject *Subject `xml:"Subject"`
 	// The ToRecipients element specifies a list of recipients to whom the item was sent.
-	ToRecipients *ToRecipientsArrayOfSmtpAddressType `xml:"ToRecipients"`
+	ToRecipients []*ToRecipientsArrayOfSmtpAddressType `xml:"ToRecipients"`
 	// The UniqueHash element specifies a unique hash value used for de-duplication.
 	UniqueHash *UniqueHash `xml:"UniqueHash"`
 }
