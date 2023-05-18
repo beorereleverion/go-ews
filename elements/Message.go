@@ -110,7 +110,7 @@ type Message struct {
 	// The Subject element represents the subject property of Exchange store items. The subject is limited to 255 characters.
 	Subject *Subject `xml:"Subject"`
 	// The ToRecipients element contains an array of recipients of an item. These are the primary recipients of an item.
-	ToRecipients *ToRecipients `xml:"ToRecipients"`
+	ToRecipients []*ToRecipients `xml:"ToRecipients"`
 	// The UniqueBody element represents an HTML fragment or plain text which represents the unique body of this conversation.
 	UniqueBody *UniqueBody `xml:"UniqueBody"`
 	// The WebClientEditFormQueryString element represents a URL to concatenate to the Outlook Web App endpoint to edit an item in Outlook Web App.
