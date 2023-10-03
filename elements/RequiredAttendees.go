@@ -8,7 +8,7 @@ type RequiredAttendees struct {
 	XMLName xml.Name
 
 	// The Attendee element represents attendees and resources for a meeting.
-	Attendee *Attendee `xml:"Attendee"`
+	Attendee []*Attendee `xml:"Attendee"`
 }
 
 func (R *RequiredAttendees) SetForMarshal() {
