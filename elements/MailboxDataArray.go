@@ -8,7 +8,7 @@ type MailboxDataArray struct {
 	XMLName xml.Name
 
 	// The MailboxData element represents an individual mailbox user and options for the type of data to be returned about the mailbox user.
-	MailboxData *MailboxData `xml:"MailboxData"`
+	MailboxData []*MailboxData `xml:"MailboxData"`
 }
 
 func (M *MailboxDataArray) SetForMarshal() {
