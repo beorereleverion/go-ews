@@ -61,7 +61,8 @@ func NewEnvelopeMarshal(body interface{}, schemas ...*Schema) (*EnvelopeRequest,
 
 func reTagXMLElement(target interface{}) {
 	addrValue := reflect.ValueOf(target)
-	if addrValue.Kind() != reflect.Ptr {
+	kind := addrValue.Kind()
+	if kind != reflect.Ptr {
 		return
 	}
 	targetValue := addrValue.Elem()
@@ -98,7 +99,22 @@ func reTagXMLElement(target interface{}) {
 			}
 			reTagXMLElement(fValue.Addr().Interface())
 		}
-		return
+	}
+	if targetType.Kind() == reflect.Slice {
+		s := reflect.ValueOf(target)
+		if s.Kind() == reflect.Ptr {
+			s = s.Elem()
+		}
+
+		for i := 0; i < s.Len(); i++ {
+			fValue := s.Index(i)
+
+			if elIface, ok := fValue.Interface().(Element); ok && !fValue.IsNil() {
+				elIface.SetForMarshal()
+				fValue.Set(reflect.ValueOf(elIface))
+			}
+			reTagXMLElement(fValue.Addr().Interface())
+		}
 	}
 }
 
