@@ -1,4 +1,4 @@
-module github.com/beorereleverion/go-ews
+module github.com/MihaylovNikitos/go-ews
 
 go 1.19
 

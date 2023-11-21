@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	goews "github.com/beorereleverion/go-ews"
-	"github.com/beorereleverion/go-ews/elements"
-	"github.com/beorereleverion/go-ews/operations"
+	goews "github.com/MihaylovNikitos/go-ews"
+	"github.com/MihaylovNikitos/go-ews/elements"
+	"github.com/MihaylovNikitos/go-ews/operations"
 	log "github.com/sirupsen/logrus"
 )
 
