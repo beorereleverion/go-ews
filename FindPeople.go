@@ -1,8 +1,8 @@
 package goews
 
 import (
-	"github.com/beorereleverion/go-ews/elements"
-	"github.com/beorereleverion/go-ews/operations"
+	"github.com/MihaylovNikitos/go-ews/elements"
+	"github.com/MihaylovNikitos/go-ews/operations"
 )
 
 // Find information about the FindPeople EWS operation.

@@ -1,8 +1,8 @@
 package goews
 
 import (
-	"github.com/beorereleverion/go-ews/elements"
-	"github.com/beorereleverion/go-ews/operations"
+	"github.com/MihaylovNikitos/go-ews/elements"
+	"github.com/MihaylovNikitos/go-ews/operations"
 )
 
 // The DeleteItem operation deletes items in the Exchange store.
