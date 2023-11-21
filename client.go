@@ -86,6 +86,7 @@ func (c *client) SendAndReceive(e Envelope) ([]byte, error) {
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
 		},
+		Transport: &http.Transport{},
 	}
 	applyConfig(c.config, client)
 
